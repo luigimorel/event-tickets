@@ -149,9 +149,9 @@
           </div>
         </div>
       </div>
-      <div class="text-center p-6 bg-gray-200">
+      <div class="text-center p-6 bg-primary">
         <span>© {new Date().getFullYear()} Copyright</span>
-        <a class="text-white font-semibold" href="https://luigimore.co/">Luigi Morel</a>
+        <a class="text-white font-semibold" href="https://luigimore.co/">Tickets  </a>
       </div>
    </div>
   </footer>

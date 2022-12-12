@@ -12,7 +12,7 @@
 			<h1 class="text-3xl font-extrabold sm:text-5xl">
 				Let us help you find an
 
-				<strong class="block font-extrabold text-primary">Event Of Your Linking. </strong>
+				<strong class="block font-extrabold text-primary">Event Of Your Liking. </strong>
 			</h1>
 
 			<p class="mt-4 max-w-lg sm:text-xl sm:leading-relaxed">
