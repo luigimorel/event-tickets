@@ -23,7 +23,7 @@
 			<div class="flex md:order-2">
 				<button
 					type="button"
-					class="text-white bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-4 text-center mr-3 md:mr-0"
+					class="text-white bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300 hover:bg-secondary hover:font-bold font-medium rounded-lg text-base px-5 py-4 text-center mr-3 md:mr-0"
 				>
 					Create Account
 				</button>

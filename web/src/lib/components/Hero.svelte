@@ -10,29 +10,30 @@
 	>
 		<div class=" text-center sm:text-left">
 			<h1 class="text-3xl font-extrabold sm:text-5xl">
-				Let us find your
+				Let us help you find an
 
-				<strong class="block font-extrabold text-primary"> Forever Home. </strong>
+				<strong class="block font-extrabold text-primary">Event Of Your Linking. </strong>
 			</h1>
 
 			<p class="mt-4 max-w-lg sm:text-xl sm:leading-relaxed">
-				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo tenetur fuga ducimus
-				numquam ea!
+				Tune into online events, webinars, lessons and more.
+				<br>
+				From wherever you are.
 			</p>
 
 			<div class="mt-8 flex flex-wrap gap-4 text-center">
 				<a
 					href="/"
-					class="block w-full rounded  bg-primary px-12 py-5 text-base font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
+					class="block w-full rounded  bg-primary px-12 py-5 text-base font-medium text-white hover:font-bold shadow hover:bg-secondary focus:outline-none focus:ring active:bg-secondary sm:w-auto"
 				>
-					Get Started
+					Browse Events
 				</a>
 
 				<a
 					href="/"
-					class="block w-full rounded bg-white px-12 py-5 text-base font-medium text-primary shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto"
+					class="block w-full rounded bg-white px-12 py-5 text-base font-medium text-primary shadow hover:text-white hover:font-bold hover:bg-secondary focus:outline-none focus:ring active:bg-secondary sm:w-auto"
 				>
-					Learn More
+					Create Account
 				</a>
 			</div>
 		</div>

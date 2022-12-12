@@ -9,7 +9,7 @@
 <Header />
 <Hero />
 <div class=" flex flex-col pt-32 max-w-screen-xl mx-auto">
-	<h2 class=" text-center mb-8 text-4xl font-bold uppercase">Experience online events</h2>
+	<h2 class=" text-center mb-8 text-3xl font-bold uppercase">Experience online events</h2>
 	<div class=" grid lg:grid-cols-4 md:grid-cols-3 space-x-7 grid-cols-1">
 		<Card />
 		<Card />
@@ -24,7 +24,7 @@
 </div>
 
 <div class=" flex flex-col pt-4 max-w-screen-xl mx-auto">
-	<h2 class=" text-center mb-8 text-4xl font-bold uppercase">Experience online events</h2>
+	<h2 class=" text-center mb-8 text-3xl font-bold uppercase">Experience online events</h2>
 	<div class=" grid lg:grid-cols-4 md:grid-cols-3 space-x-7 grid-cols-1">
 		<Card />
 		<Card />
@@ -40,7 +40,7 @@
 
 
 <div class=" flex flex-col pt-4 max-w-screen-xl mx-auto">
-	<h2 class=" text-center mb-8 text-4xl font-bold uppercase">WORTHWHILE FUNDRAISERS</h2>
+	<h2 class=" text-center mb-8 text-3xl font-bold uppercase">WORTHWHILE FUNDRAISERS</h2>
 	<div class=" grid lg:grid-cols-4 md:grid-cols-3 space-x-7 grid-cols-1">
 		<Card />
 		<Card />
