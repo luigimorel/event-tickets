@@ -31,7 +31,7 @@
 
 				<a
 					href="/"
-					class="block w-full rounded bg-white px-12 py-5 text-base font-medium text-primary shadow hover:text-white hover:font-bold hover:bg-secondary focus:outline-none focus:ring active:bg-secondary sm:w-auto"
+					class="block w-full rounded bg-white px-12 py-5 border-primary border-2 text-base font-medium text-primary shadow hover:text-white hover:font-bold hover:bg-secondary focus:outline-none focus:ring active:bg-secondary sm:w-auto"
 				>
 					Create Account
 				</a>

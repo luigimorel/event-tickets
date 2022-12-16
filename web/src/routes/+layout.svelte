@@ -1,6 +1,7 @@
 <script>
+	import Button from '../lib/components/Button.svelte';
 	import Card from '../lib/components/Card.svelte';
-	import Footer from "../lib/components/Footer.svelte";
+	import Footer from '../lib/components/Footer.svelte';
 	import Header from '../lib/components/Header.svelte';
 	import Hero from '../lib/components/Hero.svelte';
 	import '../styles.css';
@@ -10,48 +11,38 @@
 <Hero />
 <div class=" flex flex-col pt-32 max-w-screen-xl mx-auto">
 	<h2 class=" text-center mb-8 text-3xl font-bold uppercase">Experience online events</h2>
-	<div class=" grid lg:grid-cols-4 md:grid-cols-3 space-x-7 grid-cols-1">
+	<div class=" grid lg:grid-cols-4 md:grid-cols-3  mb-10 md:mb-0 grid-cols-1">
 		<Card />
 		<Card />
 		<Card />
 		<Card />
 	</div>
 
-	<button
-		class=" lg:mb-20 mb-4 mx-auto bg-white border-primary text-primary border font-bold text-xl py-3 px-6 rounded text-center items-center">
-		See More
-	</button>
+	<Button />
 </div>
 
-<div class=" flex flex-col pt-4 max-w-screen-xl mx-auto">
+<div class=" flex flex-col pt-20 md:pt-10 max-w-screen-xl mx-auto">
 	<h2 class=" text-center mb-8 text-3xl font-bold uppercase">Experience online events</h2>
-	<div class=" grid lg:grid-cols-4 md:grid-cols-3 space-x-7 grid-cols-1">
+	<div class=" grid lg:grid-cols-4 md:grid-cols-3  px-4 grid-cols-1">
 		<Card />
 		<Card />
 		<Card />
 		<Card />
 	</div>
-	<button
-		class=" lg:mb-20 mb-4 mx-auto bg-white border-primary text-primary border font-bold text-xl py-3 px-6 rounded text-center items-center">
-		See More
-	</button>
 
+	<Button />
 </div>
-
 
 <div class=" flex flex-col pt-4 max-w-screen-xl mx-auto">
 	<h2 class=" text-center mb-8 text-3xl font-bold uppercase">WORTHWHILE FUNDRAISERS</h2>
-	<div class=" grid lg:grid-cols-4 md:grid-cols-3 space-x-7 grid-cols-1">
+	<div class=" grid lg:grid-cols-4 md:grid-cols-3  px-4 grid-cols-1">
 		<Card />
 		<Card />
 		<Card />
 		<Card />
 	</div>
-	<button
-		class=" lg:mb-20 mb-4 mx-auto bg-white border-primary text-primary border font-bold text-xl py-3 px-6 rounded text-center items-center">
-		See More
-	</button>
 
+	<Button />
 </div>
 
-<Footer/>
+<Footer />
