@@ -28,6 +28,16 @@ func GetEvents(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&events)
 }
 
+// GetHomePageEvents - Returns only 4 results
+func GetHomePageEvents(w http.ResponseWriter, r *http.Request) {
+	var events []models.Event
+
+	config.DB.Limit(4).Find(&events)
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(&events)
+}
+
 // GetEventById - Returns a single event with the value of the ID specified.
 func GetEventById(w http.ResponseWriter, r *http.Request) {
 	eventId := mux.Vars(r)["id"]

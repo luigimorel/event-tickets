@@ -34,6 +34,7 @@ func Routes() {
 
 	// Events
 	router.HandleFunc("/api/v1/events", controllers.GetEvents).Methods("GET")
+	router.HandleFunc("/api/v1/homepage_events", controllers.GetHomePageEvents).Methods("GET")
 	router.HandleFunc("/api/v1/events/{id}", controllers.GetEventById).Methods("GET")
 	router.HandleFunc("/api/v1/create", controllers.CreateEvent).Methods("POST")
 	router.HandleFunc("/api/v1/events/{id}", controllers.DeleteEventById).Methods("DELETE")
