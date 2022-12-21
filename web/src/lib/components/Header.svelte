@@ -54,7 +54,7 @@
 				>
 					<li class=" hover:decoration-wavy">
 						<a
-							href="https://google.com"
+							href="/events"
 							class="block py-2 pr-4 pl-3 text-gray-700 bg-primary rounded md:bg-transparent md:p-0 "
 							aria-current="page"
 						>
@@ -63,7 +63,7 @@
 					</li>
 					<li>
 						<a
-							href="https://google.com"
+							href="/events"
 							class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:p-0 "
 						>
 							Browse Events
@@ -72,7 +72,7 @@
 
 					<li>
 						<a
-							href="https://google.com"
+							href="/login"
 							class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:p-0 "
 						>
 							Login
