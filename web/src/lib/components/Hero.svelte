@@ -23,7 +23,7 @@
 
 			<div class="mt-8 flex flex-wrap gap-4 text-center">
 				<a
-					href="/"
+					href="/events"
 					class="block w-full rounded  bg-primary px-12 py-5 text-base font-medium text-white hover:font-bold shadow hover:bg-secondary focus:outline-none focus:ring active:bg-secondary sm:w-auto"
 				>
 					Browse Events

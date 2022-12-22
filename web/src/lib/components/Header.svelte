@@ -15,13 +15,21 @@
 	>
 		<div class="container  max-w-screen-xl flex flex-wrap justify-between items-center mx-auto">
 			<a href="/" class="flex items-center text-primary text-2xl"> Tickets </a>
-			<div class="flex md:order-2">
+			<div class="flex md:order-2 justify-center items-center">
 				<button
 					type="button"
-					class="text-white md:block hidden bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300 hover:bg-secondary hover:font-bold font-medium rounded-lg text-base px-5 py-4 text-center mr-3 md:mr-0"
+					class="text-white md:block hidden bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300 hover:bg-secondary hover:font-bold font-medium rounded-lg text-base px-5 py-4 text-center mr-5 md:mr-0"
 				>
 					Create Account
 				</button>
+
+				<button
+				type="button"
+				class="text-primary md:block hidden bg-white font-extrabold rounded-lg text-base px-5 py-4 text-center mr-3 md:mr-0"
+			>
+				<a href="/login">Login</a>
+			</button>
+
 				<button
 					on:click|preventDefault={() => toggleMenu(true)}
 					data-collapse-toggle="navbar-sticky"
@@ -70,14 +78,7 @@
 						</a>
 					</li>
 
-					<li>
-						<a
-							href="/login"
-							class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:p-0 "
-						>
-							Login
-						</a>
-					</li>
+
 				</ul>
 			</div>
 		</div>

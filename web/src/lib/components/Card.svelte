@@ -1,4 +1,4 @@
-<div class=" mx-auto lg:mb-10 mb-10">
+<div class=" lg:mb-10 mb-10">
 	<a href="/">
 		<div class="bg-white shadow-md rounded md:max-w-sm w-full ">
 			<img
