@@ -18,4 +18,5 @@ type Event struct {
 	Organizer   string    `gorm:"size:255;not null;" json:"organizer"`
 	TicketPrice uint64    `gorm:"size:255;not null;" json:"ticketPrice"`
 	Category    string    `gorm:"size:255;not null;" json:"category"`
+	Slug        string    `gorm:"size:255;not null;" json:"slug"`
 }
