@@ -2,11 +2,13 @@ package controllers
 
 import (
 	"encoding/json"
+	"io/ioutil"
 	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
 	"github.com/morelmiles/go-events/config"
+	"github.com/morelmiles/go-events/internals/helpers"
 	"github.com/morelmiles/go-events/internals/models"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -112,4 +114,48 @@ func GetAllEventsByUser(w http.ResponseWriter, r *http.Request) {
 
 	config.DB.Model(&user).Find(properties).Where("id = ?", userId)
 	json.NewEncoder(w).Encode(user)
+}
+
+// Login
+func Login(w http.ResponseWriter, r *http.Request) {
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		log.Fatal("unable to process the data")
+	}
+
+	var user models.User
+
+	err = json.Unmarshal(body, &user)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	user.Prepare()
+
+	err = user.Validate("login")
+
+	if err != nil {
+		log.Printf("error: %v", err)
+	}
+
+}
+
+// Sign in
+
+func SignIn(email, password string) (string, error) {
+	var err error
+
+	user := models.User{}
+	err = config.DB.Debug().Model(models.User{}).Where("email=?", email).Take(&user).Error
+
+	if err != nil {
+		return " ", err
+	}
+
+	err = models.VerifyPassword(user.Password, password)
+	if err != nil && err == bcrypt.ErrMismatchedHashAndPassword {
+		return "", err
+	}
+	return helpers.CreateToken(user.ID)
+
 }

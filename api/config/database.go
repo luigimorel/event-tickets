@@ -7,6 +7,7 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/morelmiles/go-events/internals/models"
+	"github.com/morelmiles/go-events/internals/seeder"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -33,13 +34,16 @@ func Config() {
 	DB, err = gorm.Open(postgres.Open(dbLink), &gorm.Config{})
 
 	if err != nil {
-		log.Println(err)
+		panic(err)
 	} else {
 		fmt.Println("Connected to the database!")
 	}
+
+	seeder.InsertData(DB)
 
 	DB.Debug().AutoMigrate(
 		&models.Event{},
 		&models.User{},
 	)
+
 }

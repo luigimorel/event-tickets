@@ -2,7 +2,11 @@ module github.com/morelmiles/go-events
 
 go 1.19
 
-require github.com/swaggo/http-swagger v1.3.3
+require (
+	github.com/badoux/checkmail v1.2.1
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/swaggo/http-swagger v1.3.3
+)
 
 require (
 	github.com/Masterminds/semver/v3 v3.2.0 // indirect
