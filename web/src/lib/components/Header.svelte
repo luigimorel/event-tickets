@@ -13,8 +13,8 @@
 	<nav
 		class="bg-white px-2 sm:px-4 py-2.5  fixed w-full z-20 top-0 left-0 border-b border-gray-200"
 	>
-		<div class="container  max-w-screen-xl flex flex-wrap justify-between items-center mx-auto">
-			<a href="/" class="flex items-center text-primary text-2xl"> Tickets </a>
+		<div class="container  max-w-screen-xl mt-2 flex flex-wrap justify-between items-center mx-auto">
+			<a href="/" class="flex items-center text-primary font-extrabold text-2xl"> Tickets </a>
 			<div class="flex md:order-2 justify-center items-center">
 				<button
 					type="button"

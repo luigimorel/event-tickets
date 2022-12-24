@@ -23,7 +23,6 @@
 				apiData.set(data);
 			})
 			.catch((error) => {
-				console.log(error);
 				return [];
 			});
 	});
@@ -36,6 +35,10 @@
 <div class=" flex flex-col pt-32 max-w-screen-xl mx-auto">
 	<h2 class=" text-center mb-8 text-3xl font-bold uppercase">Experience online events</h2>
 	<div class=" grid lg:grid-cols-4 md:grid-cols-3 gap-8 px-4 md:px-0  mb-10 md:mb-0 grid-cols-1">
+
+		<!-- { $events.length === 0 ?
+<p>Failed to fetch events </p> : ""
+		} -->
 		{#each $events as event (event.id)}
 			<div class=" mx-auto lg:mb-10 mb-10">
 				<a href={`/${event.id / event.slug}`}>
