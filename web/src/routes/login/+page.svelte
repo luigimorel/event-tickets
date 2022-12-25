@@ -1,4 +1,5 @@
 <script>
+	import Footer from "../../lib/components/Footer.svelte";
 	import Header from '../../lib/components/Header.svelte';
 
 	import '../../styles.css';
@@ -65,7 +66,7 @@
 			<div class="absolute bg-black opacity-60 inset-0 z-0" />
 		</div>
 
-		<div class="w-full py-6 z-20">
+		<div class=" lg:w-8/12 w-full mt-20  py-6 z-20">
 			<form action="" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
 				<div class=" flex flex-col mb-5">
 					<label class=" mb-2 font-bold  lg:text-gray-800 text-white" for="email">Email</label>
@@ -74,14 +75,14 @@
 						name="email"
 						id="email"
 						placeholder="Email"
-						class="block w-full p-4 text-lg rounded-md bg-white text-gray-800 border border-gray-800"
+						class="block w-full py-3 px-2 text-lg rounded-md bg-white text-gray-800 border border-gray-800"
 					/>
 				</div>
 
 				<div class=" flex flex-col mb-5">
 					<label class="mb-2 font-bold lg:text-gray-800 text-white" for="password">Password</label>
 					<input
-						class="block w-full p-4 text-lg rounded-md bg-white  text-gray-800 border border-gray-800"
+						class="block w-full py-3 px-2 text-lg rounded-md bg-white  text-gray-800 border border-gray-800"
 						type="password"
 						name="password"
 						id="password"
@@ -143,3 +144,4 @@
 		</div>
 	</div>
 </section>
+<Footer/>

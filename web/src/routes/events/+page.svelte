@@ -1,8 +1,9 @@
 <script lang="ts">
-	import Header from '../../lib/components/Header.svelte';
-
 	import { onMount } from 'svelte';
+	import Time from "svelte-time/src/Time.svelte";
 	import Footer from '../../lib/components/Footer.svelte';
+	import Header from '../../lib/components/Header.svelte';
+	import Sidebar from "../../lib/components/Sidebar.svelte";
 	import { apiData, apiLink, events } from '../../store/store';
 	import '../../styles.css';
 
@@ -13,31 +14,27 @@
 				apiData.set(data);
 			})
 			.catch((error) => {
-				console.log(error);
+				error.message;
 				return [];
 			});
 	});
+
 </script>
 
 <Header />
 
-<div class=" pt-40 max-w-full mx-auto">
-	<div class=" flex flex-row md:px-14 px-4">
-		<div class=" w-3/12 pr-20">
-			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto animi dignissimos culpa
-				sunt consequatur minima aliquam at eligendi, voluptatum maiores natus, distinctio et, illo
-				ut porro. Saepe sint exercitationem vero?
-			</p>
-		</div>
-		<div class="w-9/12">
-			<h3 class=" text-2xl mb-8">{$events.length} results found</h3>
+<div class=" lg:pt-40 pt-32 mb-10 container mx-auto">
+	<div class=" flex lg:flex-row flex-col px-4">
 
+		<Sidebar/>
+
+		<div class="lg:w-9/12  w-full">
+			<h3 class=" text-2xl px-4 mb-8">{$events.length} results found</h3>
 			<div
-				class=" grid lg:grid-cols-4 md:grid-cols-3 gap-8 px-4 md:px-0  mb-10 md:mb-0 grid-cols-1">
+				class=" grid lg:grid-cols-4 md:grid-cols-3 px-4 md:gap-4 md:px-0  mb-10 md:mb-0 grid-cols-1">
 				{#each $events as event}
-					<div class=" mx-auto lg:mb-10 mb-10">
-						<a href={`/events/${event.slug}`}>
+					<div class="	 lg:mb-10 mb-10">
+						<a href={`/events${event.slug}`}>
 							<div class="bg-white shadow-md 	rounded md:max-w-sm w-full ">
 								<img class="rounded-t-md w-full" src={`${event.coverImage}`} alt="event" />
 
@@ -47,8 +44,12 @@
 									</h3>
 									<p class=" text-gray-600 capitalize text-sm mb-3">{event.venue}</p>
 									<div class=" flex flex-row justify-between">
-										<p class=" text-gray-700 text-xs font-bold">{event.date}</p>
-										<p class=" text-gray-700 text-xs font-bold">{event.eventTime}</p>
+										<p class=" text-gray-700 text-xs font-extrabold">
+											<Time timestamp={event.date} format="ddd, D MMM YYYY" />
+										</p>
+										<p class=" text-gray-700 text-xs font-extrabold">
+											<Time timestamp={event.eventTime} format="h:mm A" />
+										</p>
 									</div>
 								</div>
 							</div>
