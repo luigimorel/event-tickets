@@ -38,6 +38,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@tailwindcss/forms": "^0.5.3",
 		"svelte-time": "^0.7.1"
 	}
 }
