@@ -169,8 +169,7 @@
 					/>
 				</div>
 
-				<div
-					class=" lg:text-gray-800 text-white hover:underline mb-8 hover:text-gray-600"   >
+				<div class=" lg:text-gray-800 text-white cursor-pointer  hover:underline mb-8 hover:text-gray-600">
 					<p>
 						Already have an account?
 						<a href="/login" class=" text-primary font-bold"> Login </a>
