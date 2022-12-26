@@ -18,8 +18,8 @@
 				<a href="/create-account">
 				<button
 					type="button"
-					class="text-white md:block hidden bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300 hover:bg-secondary
-					hover:font-bold font-medium rounded-lg text-base px-5 py-4 text-center mr-5 md:mr-0">
+					class="text-white md:block hidden bg-primary hover:bg-secondary
+					font-medium rounded-lg text-base px-5 py-4 text-center mr-5 md:mr-0">
 					Create Account
 				</button>
 			</a>
