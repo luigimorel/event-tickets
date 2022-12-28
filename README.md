@@ -2,8 +2,6 @@
 
 ![A screenshot](./img.png)
 
-## Intention is to sell this project.
-
 ### Tools
 
 - Go
