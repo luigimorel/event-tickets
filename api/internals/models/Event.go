@@ -12,8 +12,8 @@ type Event struct {
 	Name        string    `gorm:"size:255;not null;" json:"name"`
 	CoverImage  string    `gorm:"size:255;not null;" json:"coverImage"`
 	Venue       string    `gorm:"size:255;not null;" json:"venue"`
-	EventTime   time.Time `sql:"type:timestamp without time zone" json:"eventTime"`
-	Date        time.Time `gorm:"type:text;not null;" json:"date"`
+	EventTime   time.Time `sql:"type:timestamp without time zone;not null;" json:"eventTime"`
+	Date        time.Time `gorm:"type:timestamp without time zone;not null;" json:"date"`
 	Description string    `gorm:"type:text;not null;" json:"description"`
 	Organizer   string    `gorm:"size:255;not null;" json:"organizer"`
 	TicketPrice uint64    `gorm:"size:255;not null;" json:"ticketPrice"`
