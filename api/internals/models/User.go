@@ -4,6 +4,7 @@ import (
 	"errors"
 	"html"
 	"strings"
+	"time"
 
 	"github.com/badoux/checkmail"
 	"golang.org/x/crypto/bcrypt"
@@ -13,11 +14,33 @@ import (
 type User struct {
 	gorm.Model
 	ID          uint32 `gorm:"primary_key;auto_increment" json:"id"`
-	FirstName   string `gorm:"size:255;not null;" json:"firstName"`
-	LastName    string `gorm:"size:255;not null;" json:"lastName"`
+	Name        string `gorm:"size:255;not null;" json:"name"`
 	PhoneNumber string `gorm:"type:text;not null;unique" json:"phoneNumber"`
 	Email       string `gorm:"size:100;not null;unique" json:"email"`
 	Password    string `gorm:"size:100;not null;" json:"password"`
+	Verified    bool   `gorm:"not null"`
+}
+
+type SignUpInput struct {
+	Name            string `json:"name" binding:"required"`
+	Email           string `json:"email" binding:"required"`
+	Password        string `json:"password" binding:"required,min=8"`
+	PasswordConfirm string `json:"passwordConfirm" binding:"required"`
+}
+
+type SignInInput struct {
+	Email    string `json:"email"  binding:"required"`
+	Password string `json:"password"  binding:"required"`
+}
+
+type UserResponse struct {
+	ID        uint32    `json:"id,omitempty"`
+	Name      string    `json:"name,omitempty"`
+	Email     string    `json:"email,omitempty"`
+	Role      string    `json:"role,omitempty"`
+	Provider  string    `json:"provider"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 }
 
 func Hash(password string) ([]byte, error) {
@@ -39,8 +62,7 @@ func (user *User) BeforeSave() error {
 
 func (user *User) Prepare() {
 	user.ID = 0
-	user.FirstName = html.EscapeString(strings.TrimSpace(user.FirstName))
-	user.LastName = html.EscapeString(strings.TrimSpace(user.LastName))
+	user.Name = html.EscapeString(strings.TrimSpace(user.Name))
 	user.Email = html.EscapeString(strings.TrimSpace(user.Email))
 	user.PhoneNumber = html.EscapeString(strings.TrimSpace(user.PhoneNumber))
 
@@ -49,11 +71,8 @@ func (user *User) Prepare() {
 func (user *User) Validate(action string) error {
 	switch strings.ToLower(action) {
 	case "update":
-		if user.FirstName == "" {
-			return errors.New("first name is required")
-		}
-		if user.LastName == "" {
-			return errors.New("last name is required")
+		if user.Name == "" {
+			return errors.New("name is required")
 		}
 		if user.PhoneNumber == "" {
 			return errors.New("phone number is required")
@@ -83,11 +102,8 @@ func (user *User) Validate(action string) error {
 		return nil
 
 	default:
-		if user.FirstName == "" {
+		if user.Name == "" {
 			return errors.New("first name is required")
-		}
-		if user.LastName == "" {
-			return errors.New("last name is required")
 		}
 		if user.PhoneNumber == "" {
 			return errors.New("phone number is required")
