@@ -10,53 +10,71 @@ import (
 
 var events = []models.Event{
 	{
-		ID:          1,
 		Name:        "Reggae Fest",
 		CoverImage:  "https://images.quicket.co.za/0437147_247_247.jpeg",
-		Venue:       "Kira Town",
+		Venue:       "Online",
 		EventTime:   time.Now(),
 		Date:        time.Now(),
 		Description: "This is the description",
 		Organizer:   "Africa",
 		TicketPrice: 2500,
 		Category:    "fundraiser",
-		Slug:        "party-after-arty",
+		Slug:        "/party-after-arty",
 	},
 	{
-		ID:          2,
-		Name:        "Nyam Nya,",
+		Name:        "NyaNya",
+		CoverImage:  "https://images.quicket.co.za/0351438_247_247.jpeg",
+		Venue:       "Kampala, Uganda",
+		EventTime:   time.Now(),
+		Date:        time.Now(),
+		Description: "Fun filled event",
+		Organizer:   "Talent Africa",
+		TicketPrice: 50000,
+		Category:    "fundraiser",
+		Slug:        "/nyanya",
+	},
+	{
+		Name:        "Lira Festival",
 		CoverImage:  "https://images.quicket.co.za/0437147_247_247.jpeg",
 		Venue:       "Kampala, Uganda",
 		EventTime:   time.Now(),
 		Date:        time.Now(),
-		Description: "Fun filled event ",
+		Description: "Fun filled event",
 		Organizer:   "Talent Africa",
 		TicketPrice: 50000,
 		Category:    "fundraiser",
-		Slug:        "party-after-arty",
+		Slug:        "/party-after-arty",
+	},
+	{
+		Name:        "Hotels Uganda",
+		CoverImage:  "https://images.quicket.co.za/0437121_247_247.jpeg",
+		Venue:       "Kampala, Uganda",
+		EventTime:   time.Now(),
+		Date:        time.Now(),
+		Description: "Fun filled event",
+		Organizer:   "Talent Africa",
+		TicketPrice: 50000,
+		Category:    "fundraiser",
+		Slug:        "/party-after-arty",
 	},
 }
 
 var users = []models.User{
 	{
-		ID:          1,
-		FirstName:   "Luigi",
-		LastName:    "Morel",
+		Name:        "Luigi Morel",
 		PhoneNumber: "256739303233",
 		Email:       "hi@luigimorel.co",
 		Password:    "dsdsdsd",
 	},
 	{
-		ID:          2,
-		FirstName:   "Karo",
-		LastName:    "Musegge",
+		Name:        "Luigi Morel",
 		PhoneNumber: "256739323233",
 		Email:       "hi@luigimsorel.co",
 		Password:    "dsdsdsd",
 	},
 }
 
-func InsertData(db *gorm.DB) {
+func InsertSeedData(db *gorm.DB) {
 	err := db.Migrator().DropTable(&models.Event{})
 	if err != nil {
 		log.Fatalf("cannot drop events table")
@@ -68,6 +86,7 @@ func InsertData(db *gorm.DB) {
 	}
 
 	err = db.Debug().AutoMigrate(&models.User{}, &models.Event{})
+
 	if err != nil {
 		log.Fatalf("cannot migrate table: %v", err)
 	}
