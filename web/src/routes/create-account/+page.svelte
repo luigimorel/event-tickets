@@ -75,32 +75,16 @@
  					<div class=" flex flex-col mb-5">
 						<label
 							class=" mb-2 font-bold  lg:text-gray-800 text-white"
-							for="firstName">
-                            First Name
+							for="name">
+                            Name
                         </label>
 
 						<input
 							type="text"
-							name="firstName"
-							id="firstName"
-							placeholder="First Name"
+							name="name"
+							id="name"
+							placeholder="Name"
 							class="block w-full py-3 px-2 text-base rounded bg-white text-gray-800 border border-gray-800"
-						/>
-					</div>
-
-					<div class=" flex flex-col mb-5">
-						<label
-							class="mb-2 font-bold lg:text-gray-800 text-white"
-							for="lastName">
-                            Last Name
-                        </label>
-
-						<input
-							class="block w-full py-3 px-2 text-base rounded bg-white  text-gray-800 border border-gray-800"
-							type="text"
-							name="lastName"
-							id="lastName"
-							placeholder="Last Name"
 						/>
 					</div>
 
@@ -169,7 +153,7 @@
 					/>
 				</div>
 
-				<div class=" lg:text-gray-800 text-white cursor-pointer  hover:underline mb-8 hover:text-gray-600">
+				<div class=" lg:text-gray-800 text-white cursor-pointer mb-8 hover:text-gray-600">
 					<p>
 						Already have an account?
 						<a href="/login" class=" text-primary font-bold"> Login </a>
