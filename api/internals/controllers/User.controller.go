@@ -120,23 +120,30 @@ func GetAllEventsByUser(w http.ResponseWriter, r *http.Request) {
 func Login(w http.ResponseWriter, r *http.Request) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		log.Fatal("unable to process the data")
+		helpers.ERROR(w, http.StatusUnprocessableEntity, err)
+		return
 	}
-
-	var user models.User
-
+	user := models.User{}
 	err = json.Unmarshal(body, &user)
 	if err != nil {
-		log.Fatal(err)
+		helpers.ERROR(w, http.StatusUnprocessableEntity, err)
+		return
 	}
 
 	user.Prepare()
 
 	err = user.Validate("login")
-
 	if err != nil {
-		log.Printf("error: %v", err)
+		helpers.ERROR(w, http.StatusUnprocessableEntity, err)
+		return
 	}
+	token, err := SignIn(user.Email, user.Password)
+	if err != nil {
+		formattedError := helpers.FormatError(err.Error())
+		helpers.ERROR(w, http.StatusUnprocessableEntity, formattedError)
+		return
+	}
+	helpers.JSON(w, http.StatusOK, token)
 
 }
 
@@ -157,5 +164,4 @@ func SignIn(email, password string) (string, error) {
 		return "", err
 	}
 	return helpers.CreateToken(user.ID)
-
 }
