@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/gorilla/mux"
 	"github.com/morelmiles/go-events/config"
@@ -22,7 +23,20 @@ func checkIfEventExists(eventId string) bool {
 func GetEvents(w http.ResponseWriter, r *http.Request) {
 	var events []models.Event
 
-	config.DB.Find(&events)
+	pageStr := mux.Vars(r)["page"]
+	pageLimit := mux.Vars(r)["limit"]
+
+	page, err := strconv.Atoi(pageStr)
+	if err != nil || page < 1 {
+		page = 1
+	}
+
+	pageSize, err := strconv.Atoi(pageLimit)
+	if err != nil || pageSize < 1 {
+		pageSize = 20
+	}
+
+	config.DB.Limit(pageSize).Offset((page - 1) * pageSize).Find(&events)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(&events)
