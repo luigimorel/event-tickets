@@ -36,6 +36,7 @@ require (
 	github.com/go-openapi/jsonreference v0.20.0 // indirect
 	github.com/go-openapi/spec v0.20.7 // indirect
 	github.com/go-openapi/swag v0.22.3 // indirect
+	github.com/gofrs/uuid v4.3.1+incompatible // indirect
 	github.com/gorilla/mux v1.8.0
 	github.com/joho/godotenv v1.4.0
 	github.com/josharian/intern v1.0.0 // indirect
