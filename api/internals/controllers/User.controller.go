@@ -57,12 +57,6 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 
 	json.NewDecoder(r.Body).Decode(&user)
 
-	// // Fix this middleware
-	// if _, err := middleware.HashPassword(user.Password); err != nil {
-	// 	log.Printf("Error: %d", err)
-	// 	return
-	// }
-
 	newUser := config.DB.Create(&user)
 	err = newUser.Error
 
@@ -110,9 +104,9 @@ func GetAllEventsByUser(w http.ResponseWriter, r *http.Request) {
 	userId := mux.Vars(r)["id"]
 
 	var user models.User
-	var properties models.Event
+	var event models.Event
 
-	config.DB.Model(&user).Find(properties).Where("id = ?", userId)
+	config.DB.Model(&user).Find(event).Where("id = ?", userId)
 	json.NewEncoder(w).Encode(user)
 }
 
