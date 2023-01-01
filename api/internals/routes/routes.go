@@ -27,7 +27,7 @@ func Routes() {
 	router.HandleFunc("/", helpers.SetMiddlewareJSON(controllers.Home)).Methods("GET")
 
 	// Auth
-	router.HandleFunc("/api/v1/auth/login", helpers.SetMiddlewareJSON(controllers.Login)).Methods("POST")
+	router.HandleFunc("/api/v1/	", helpers.SetMiddlewareJSON(controllers.Login)).Methods("POST")
 
 	// Users
 	router.HandleFunc("/api/v1/users", helpers.SetMiddlewareAuthentication(controllers.GetUsers)).Methods("GET")

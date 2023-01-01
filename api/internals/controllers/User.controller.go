@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"encoding/json"
+	"io"
 	"io/ioutil"
-	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -52,19 +52,30 @@ func GetUserById(w http.ResponseWriter, r *http.Request) {
 
 // CreateUser - Creates a new user
 func CreateUser(w http.ResponseWriter, r *http.Request) {
-	var user models.User
-	var err error
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		helpers.ERROR(w, http.StatusUnprocessableEntity, err)
+	}
+	user := models.User{}
+	err = json.Unmarshal(body, &user)
+	if err != nil {
+		helpers.ERROR(w, http.StatusUnprocessableEntity, err)
+		return
+	}
+
+	user.Prepare()
+	user.BeforeSave()
+	err = user.Validate("")
+	if err != nil {
+		helpers.ERROR(w, http.StatusUnprocessableEntity, err)
+		return
+	}
 
 	json.NewDecoder(r.Body).Decode(&user)
+	config.DB.Save(&user)
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(user)
 
-	newUser := config.DB.Create(&user)
-	err = newUser.Error
-
-	if err != nil {
-		log.Panic(err)
-	} else {
-		json.NewEncoder(w).Encode(&user)
-	}
 }
 
 // UpdateUserById -  Updates a single user by the ID specified
