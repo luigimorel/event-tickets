@@ -3,7 +3,6 @@ package controllers
 import (
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -123,7 +122,7 @@ func GetAllEventsByUser(w http.ResponseWriter, r *http.Request) {
 
 // Login
 func Login(w http.ResponseWriter, r *http.Request) {
-	body, err := ioutil.ReadAll(r.Body)
+	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		helpers.ERROR(w, http.StatusUnprocessableEntity, err)
 		return
