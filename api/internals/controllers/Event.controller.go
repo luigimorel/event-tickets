@@ -7,8 +7,8 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
-	"github.com/morelmiles/go-events/config"
 
+	"github.com/morelmiles/go-events/config"
 	"github.com/morelmiles/go-events/internals/models"
 )
 
