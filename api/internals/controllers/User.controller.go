@@ -63,7 +63,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	user.Prepare()
-	user.BeforeSave()
+	user.BeforeSave(config.DB)
 	err = user.Validate("")
 	if err != nil {
 		helpers.ERROR(w, http.StatusUnprocessableEntity, err)

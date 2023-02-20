@@ -15,10 +15,11 @@ type User struct {
 	gorm.Model
 	ID          uint32 `gorm:"primary_key;auto_increment" json:"id"`
 	Name        string `gorm:"size:255;not null;" json:"name"`
-	PhoneNumber string `gorm:"type:text;not null;unique" json:"phoneNumber"`
+	PhoneNumber string `gorm:"size:20;type:text;not null;unique" json:"phone"`
+	Role        string `gorm:"size:20;default:user" json:"role"`
 	Email       string `gorm:"size:100;not null;unique" json:"email"`
 	Password    string `gorm:"size:100;not null;" json:"password"`
-	Verified    bool   `gorm:"not null"`
+	Verified    bool   `gorm:"default:false;" json:"verified"`
 }
 
 type SignUpInput struct {
@@ -51,7 +52,7 @@ func VerifyPassword(hashedPassword, password string) error {
 	return bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
 }
 
-func (user *User) BeforeSave() error {
+func (user *User) BeforeSave(*gorm.DB) error {
 	hashedPassword, err := Hash(user.Password)
 	if err != nil {
 		return err
