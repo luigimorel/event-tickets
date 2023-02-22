@@ -21,7 +21,8 @@ RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 
 COPY --from=0 /app/server ./
-COPY ./config/ ./config/
+
+COPY .env .
 
 EXPOSE 8080
 

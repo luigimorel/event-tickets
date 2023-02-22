@@ -11,7 +11,8 @@
 			height={24}
 			viewBox="0 0 24 24"
 			fill="none"
-			xmlns="http://www.w3.org/2000/svg">
+			xmlns="http://www.w3.org/2000/svg"
+		>
 			<path
 				d="M10 17C13.866 17 17 13.866 17 10C17 6.13401 13.866 3 10 3C6.13401 3 3 6.13401 3 10C3 13.866 6.13401 17 10 17Z"
 				stroke="#439A97"
@@ -45,7 +46,8 @@
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+						for="radio"
+					>
 						Today
 					</label>
 				</div>
@@ -60,7 +62,8 @@
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+						for="radio"
+					>
 						This Week
 					</label>
 				</div>
@@ -75,7 +78,8 @@
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+						for="radio"
+					>
 						Next 7 days
 					</label>
 				</div>
@@ -90,7 +94,8 @@
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+						for="radio"
+					>
 						Next 30 days
 					</label>
 				</div>
@@ -105,7 +110,8 @@
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+						for="radio"
+					>
 						All Dates
 					</label>
 				</div>
@@ -132,7 +138,8 @@
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+						for="radio"
+					>
 						Fundraiser
 					</label>
 				</div>
@@ -147,7 +154,8 @@
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+						for="radio"
+					>
 						Physical event
 					</label>
 				</div>
@@ -162,7 +170,8 @@
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+						for="radio"
+					>
 						Online event
 					</label>
 				</div>
@@ -185,7 +194,8 @@
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+						for="radio"
+					>
 						Kampala
 					</label>
 				</div>
@@ -200,7 +210,8 @@
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+						for="radio"
+					>
 						Lira
 					</label>
 				</div>
@@ -215,7 +226,8 @@
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+						for="radio"
+					>
 						Gulu
 					</label>
 				</div>
@@ -230,7 +242,8 @@
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+						for="radio"
+					>
 						Fort Portal
 					</label>
 				</div>
@@ -245,7 +258,8 @@
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+						for="radio"
+					>
 						Arua
 					</label>
 				</div>
@@ -268,7 +282,8 @@
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+						for="radio"
+					>
 						Music
 					</label>
 				</div>
@@ -283,7 +298,8 @@
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+						for="radio"
+					>
 						Charity & Causes
 					</label>
 				</div>
@@ -298,7 +314,8 @@
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+						for="radio"
+					>
 						Health & Awareness
 					</label>
 				</div>
@@ -313,7 +330,8 @@
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+						for="radio"
+					>
 						Food & Drinks
 					</label>
 				</div>
@@ -328,7 +346,8 @@
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+						for="radio"
+					>
 						Community
 					</label>
 				</div>

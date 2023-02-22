@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  db:
+    image: api
+    environment:
+      POSTGRES_DB: events_prod
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - default
+  web:
+    image: web
+    depends_on:
+      - db
+    ports:
+      - "5173:5173"

@@ -1,0 +1,83 @@
+{
+	".svelte-kit/build/index.js": {
+		"file": "index.js",
+		"src": ".svelte-kit/build/index.js",
+		"isEntry": true,
+		"imports": ["_index.js", "_paths.js", "_index2.js"],
+		"dynamicImports": [".svelte-kit/build/hooks.js"]
+	},
+	"node_modules/@sveltejs/kit/src/runtime/components/layout.svelte": {
+		"file": "entries/fallbacks/layout.svelte.js",
+		"src": "node_modules/@sveltejs/kit/src/runtime/components/layout.svelte",
+		"isEntry": true,
+		"imports": ["_index.js"]
+	},
+	"node_modules/@sveltejs/kit/src/runtime/components/error.svelte": {
+		"file": "entries/fallbacks/error.svelte.js",
+		"src": "node_modules/@sveltejs/kit/src/runtime/components/error.svelte",
+		"isEntry": true,
+		"imports": ["_index.js", "_stores.js"]
+	},
+	"src/routes/+page.svelte": {
+		"file": "entries/pages/_page.svelte.js",
+		"src": "src/routes/+page.svelte",
+		"isEntry": true,
+		"imports": ["_index.js", "_Time.js", "_store.js", "_styles.js"]
+	},
+	"src/routes/create-account/+page.svelte": {
+		"file": "entries/pages/create-account/_page.svelte.js",
+		"src": "src/routes/create-account/+page.svelte",
+		"isEntry": true,
+		"imports": ["_index.js", "_styles.js"]
+	},
+	"src/routes/events/+page.svelte": {
+		"file": "entries/pages/events/_page.svelte.js",
+		"src": "src/routes/events/+page.svelte",
+		"isEntry": true,
+		"imports": ["_index.js", "_Time.js", "_store.js", "_styles.js"]
+	},
+	"src/routes/events/[id]/+page.svelte": {
+		"file": "entries/pages/events/_id_/_page.svelte.js",
+		"src": "src/routes/events/[id]/+page.svelte",
+		"isEntry": true,
+		"imports": ["_index.js", "_stores.js", "_store.js", "_styles.js"]
+	},
+	"src/routes/login/+page.svelte": {
+		"file": "entries/pages/login/_page.svelte.js",
+		"src": "src/routes/login/+page.svelte",
+		"isEntry": true,
+		"imports": ["_index.js", "_styles.js"]
+	},
+	".svelte-kit/build/hooks.js": {
+		"file": "chunks/hooks.js",
+		"src": ".svelte-kit/build/hooks.js",
+		"isDynamicEntry": true
+	},
+	"_index.js": {
+		"file": "chunks/index.js"
+	},
+	"_paths.js": {
+		"file": "chunks/paths.js"
+	},
+	"_index2.js": {
+		"file": "chunks/index2.js",
+		"imports": ["_index.js"]
+	},
+	"_stores.js": {
+		"file": "chunks/stores.js",
+		"imports": ["_index.js", "_paths.js", "_index2.js"]
+	},
+	"_Time.js": {
+		"file": "chunks/Time.js",
+		"imports": ["_index.js"]
+	},
+	"_store.js": {
+		"file": "chunks/store.js",
+		"imports": ["_index.js", "_index2.js"]
+	},
+	"_styles.js": {
+		"file": "chunks/styles.js",
+		"imports": ["_index.js"],
+		"css": ["_app/immutable/assets/styles-c0004e5d.css"]
+	}
+}

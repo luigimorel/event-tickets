@@ -2,7 +2,6 @@ package routes
 
 import (
 	"net/http"
-	"os"
 
 	"github.com/gorilla/mux"
 	"github.com/morelmiles/go-events/internals/controllers"
@@ -12,8 +11,6 @@ import (
 )
 
 func Routes() {
-
-	port := os.Getenv("PORT")
 
 	helpers.InitLogger()
 
@@ -46,5 +43,5 @@ func Routes() {
 	router.HandleFunc("/api/v1/events/{id}", helpers.SetMiddlewareAuthentication(controllers.UpdateEventById)).Methods("PUT")
 
 	// Server port
-	http.ListenAndServe(":"+port, corsHandler)
+	http.ListenAndServe(":8080", corsHandler)
 }

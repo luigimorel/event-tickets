@@ -14,7 +14,7 @@
 			.then((response) => response.json())
 			.then((data) => {
 				apiData.set(data);
- 			})
+			})
 
 			.catch((error) => {
 				console.log(error);
@@ -26,12 +26,9 @@
 <Header />
 
 <div class=" pt-40">
-
 	<p>{console.log(singleEvent)}</p>
 	{#each singleEvent as singoEvent}
 		<p>{singoEvent.name}</p>
-
 	{/each}
-
 </div>
 <Footer />

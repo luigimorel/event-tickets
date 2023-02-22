@@ -1,10 +1,15 @@
-@media screen and (max-width:800px) {
-    br {
-        display: none
-    }
-}
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
 
+@media screen and (max-width: 800px) {
+	br {
+		display: none;
+	}
+}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+	font-family: 'IBM Plex Sans', sans-serif;
+}

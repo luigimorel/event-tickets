@@ -20,7 +20,7 @@
 			.then((data) => {
 				apiData.set(data);
 			})
-			.catch((error) => {
+			.catch(() => {
 				return [];
 			});
 	});
@@ -31,9 +31,12 @@
 <Hero />
 
 <div class=" flex flex-col pt-32 max-w-screen-xl mx-auto">
-	<h2 class=" text-center mb-8 text-3xl font-bold uppercase">Experience online events</h2>
-	<div class=" grid lg:grid-cols-4 md:grid-cols-3 gap-8 px-4 md:px-0  mb-10 md:mb-0 grid-cols-1">
-
+	<h2 class=" text-center mb-8 text-3xl font-bold uppercase">
+		Experience online events
+	</h2>
+	<div
+		class=" grid lg:grid-cols-4 md:grid-cols-3 gap-8 px-4 md:px-0  mb-10 md:mb-0 grid-cols-1"
+	>
 		<!-- { $events.length === 0 ?
 			<p>Failed to fetch events </p> : ""
 		} -->
@@ -42,13 +45,21 @@
 			<div class=" mx-auto lg:mb-10 mb-10">
 				<a href={`/${event.id / event.slug}`}>
 					<div class="bg-white shadow-md rounded md:max-w-sm w-full ">
-						<img class="	rounded-t-md w-full " src={`${event.coverImage}`} alt="event" />
+						<img
+							class="	rounded-t-md w-full "
+							src={`${event.coverImage}`}
+							alt="event"
+						/>
 
 						<div class="px-5 pb-5">
-							<h3 class="text-gray-900 font-semibold text-lg capitalize mt-4 tracking-tight">
+							<h3
+								class="text-gray-900 font-semibold text-lg capitalize mt-4 tracking-tight"
+							>
 								{event.name}
 							</h3>
-							<p class=" text-gray-600 text-sm mb-3 capitalize">{event.venue}</p>
+							<p class=" text-gray-600 text-sm mb-3 capitalize">
+								{event.venue}
+							</p>
 							<div class=" flex flex-row justify-between">
 								<p class=" text-gray-700 text-xs font-bold">
 									<Time timestamp={event.date} format="ddd, D MMM YYYY" />
@@ -70,9 +81,13 @@
 </div>
 
 <div class=" flex flex-col		 max-w-screen-xl mx-auto">
-	<h2 class=" text-center mb-8 text-3xl font-bold uppercase">Experience online events</h2>
-	<div class=" grid lg:grid-cols-4 md:grid-cols-3 gap-8 px-4 md:px-0  mb-10 md:mb-0 grid-cols-1">
+	<h2 class=" text-center mb-8 text-3xl font-bold uppercase">
+		Experience fundraisings
+	</h2>
 
+	<div
+		class=" grid lg:grid-cols-4 md:grid-cols-3 gap-8 px-4 md:px-0  mb-10 md:mb-0 grid-cols-1"
+	>
 		<!-- { $events.length === 0 ?
 			<p>Failed to fetch events </p> : ""
 		} -->
@@ -81,13 +96,21 @@
 			<div class=" mx-auto lg:mb-10 mb-10">
 				<a href={`/${event.id / event.slug}`}>
 					<div class="bg-white shadow-md rounded md:max-w-sm w-full ">
-						<img class="	rounded-t-md w-full " src={`${event.coverImage}`} alt="event" />
+						<img
+							class="	rounded-t-md w-full "
+							src={`${event.coverImage}`}
+							alt="event"
+						/>
 
 						<div class="px-5 pb-5">
-							<h3 class="text-gray-900 font-semibold text-lg capitalize mt-4 tracking-tight">
+							<h3
+								class="text-gray-900 font-semibold text-lg capitalize mt-4 tracking-tight"
+							>
 								{event.name}
 							</h3>
-							<p class=" text-gray-600 text-sm mb-3 capitalize">{event.venue}</p>
+							<p class=" text-gray-600 text-sm mb-3 capitalize">
+								{event.venue}
+							</p>
 							<div class=" flex flex-row justify-between">
 								<p class=" text-gray-700 text-xs font-bold">
 									<Time timestamp={event.date} format="ddd, D MMM YYYY" />
@@ -109,9 +132,12 @@
 </div>
 
 <div class=" flex flex-col max-w-screen-xl mx-auto">
-	<h2 class=" text-center mb-8 text-3xl font-bold uppercase">Experience online events</h2>
-	<div class=" grid lg:grid-cols-4 md:grid-cols-3 gap-8 px-4 md:px-0  mb-10 md:mb-0 grid-cols-1">
-
+	<h2 class=" text-center mb-8 text-3xl font-bold uppercase">
+		Experience concerts
+	</h2>
+	<div
+		class=" grid lg:grid-cols-4 md:grid-cols-3 gap-8 px-4 md:px-0  mb-10 md:mb-0 grid-cols-1"
+	>
 		<!-- { $events.length === 0 ?
 			<p>Failed to fetch events </p> : ""
 		} -->
@@ -120,13 +146,21 @@
 			<div class=" mx-auto lg:mb-10 mb-10">
 				<a href={`/${event.id / event.slug}`}>
 					<div class="bg-white shadow-md rounded md:max-w-sm w-full ">
-						<img class="	rounded-t-md w-full " src={`${event.coverImage}`} alt="event" />
+						<img
+							class="	rounded-t-md w-full "
+							src={`${event.coverImage}`}
+							alt="event"
+						/>
 
 						<div class="px-5 pb-5">
-							<h3 class="text-gray-900 font-semibold text-lg capitalize mt-4 tracking-tight">
+							<h3
+								class="text-gray-900 font-semibold text-lg capitalize mt-4 tracking-tight"
+							>
 								{event.name}
 							</h3>
-							<p class=" text-gray-600 text-sm mb-3 capitalize">{event.venue}</p>
+							<p class=" text-gray-600 text-sm mb-3 capitalize">
+								{event.venue}
+							</p>
 							<div class=" flex flex-row justify-between">
 								<p class=" text-gray-700 text-xs font-bold">
 									<Time timestamp={event.date} format="ddd, D MMM YYYY" />
@@ -146,6 +180,5 @@
 		<Button link="/events" />
 	</div>
 </div>
-
 
 <Footer />
