@@ -1,5 +1,7 @@
 ## A fullstack event booking website
 
+Visit the live app: [https://event-ticketss.netlify.app/events](https://event-ticketss.netlify.app/events)
+
 ![A screenshot](./img.png)
 ![A screenshot](./img2.png)
 ![A screenshot](./img3.png)
@@ -9,9 +11,10 @@
 - Go
 - Gorm
 - Svelte
-- Postgres
+- PostgreSQL
 - Typescript
 - Tailwind CSS
+- [render.com](render.com) (For hosting the Go app and database)
 
 ### Features
 
