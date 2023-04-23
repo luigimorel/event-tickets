@@ -2,15 +2,15 @@ import { derived, writable } from 'svelte/store';
 
 export const apiData = writable([]);
 
-const devApiLink = 'http://localhost:8080/api/v1/';
+const devApiLink = 'https://events-21r9.onrender.com/api/v1/';
 const productionApiLink = 'https://dronejobs.co/';
 
 export let apiLink: string;
 
 // Change the operator to turn the flag off or on
-const flag = false;
+const flag = true;
 
-if (flag === false) {
+if (flag === true) {
 	apiLink = devApiLink;
 } else {
 	apiLink = productionApiLink;
