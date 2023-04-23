@@ -36,9 +36,9 @@
 	</h2>
 	<div
 		class=" grid lg:grid-cols-4 md:grid-cols-3 gap-8 px-4 md:px-0  mb-10 md:mb-0 grid-cols-1">
-		<!-- { $events.length === 0 ?
-			<p>Failed to fetch events </p> : ""
-		} -->
+		$events.length === 0 && (
+		<p>Failed to fetch events</p>
+		)
 
 		{#each $events as event (event.id)}
 			<div class=" mx-auto lg:mb-10 mb-10">
