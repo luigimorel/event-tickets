@@ -3,30 +3,26 @@
 		<input
 			class="leading-none text-left text-gray-600 text-base placeholder:font-bold placeholder:text-gray-500 px-4 py-5 w-full border rounded border-primary  outline-none"
 			type="text"
-			placeholder="Search for events"
-		/>
+			placeholder="Search for events" />
 		<svg
 			class="absolute right-3 z-10 cursor-pointer"
 			width={24}
 			height={24}
 			viewBox="0 0 24 24"
 			fill="none"
-			xmlns="http://www.w3.org/2000/svg"
-		>
+			xmlns="http://www.w3.org/2000/svg">
 			<path
 				d="M10 17C13.866 17 17 13.866 17 10C17 6.13401 13.866 3 10 3C6.13401 3 3 6.13401 3 10C3 13.866 6.13401 17 10 17Z"
 				stroke="#439A97"
 				stroke-width="1.66667"
 				stroke-linecap="round"
-				stroke-linejoin="round"
-			/>
+				stroke-linejoin="round" />
 			<path
 				d="M21 21L15 15"
 				stroke="#439A97"
 				stroke-width="1.66667"
 				stroke-linecap="round"
-				stroke-linejoin="round"
-			/>
+				stroke-linejoin="round" />
 		</svg>
 	</div>
 
@@ -41,13 +37,11 @@
 						class=" checked:bg-primary checked:border-primary mr-2 cursor-pointer"
 						type="radio"
 						name="radio"
-						id="radio"
-					/>
+						id="radio" />
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio"
-					>
+						for="radio">
 						Today
 					</label>
 				</div>
@@ -57,13 +51,11 @@
 						class=" checked:bg-primary checked:border-primary mr-2 cursor-pointer"
 						type="radio"
 						name="radio"
-						id="radio"
-					/>
+						id="radio" />
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio"
-					>
+						for="radio">
 						This Week
 					</label>
 				</div>
@@ -73,13 +65,11 @@
 						class=" checked:bg-primary checked:border-primary mr-2 cursor-pointer"
 						type="radio"
 						name="radio"
-						id="radio"
-					/>
+						id="radio" />
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio"
-					>
+						for="radio">
 						Next 7 days
 					</label>
 				</div>
@@ -89,13 +79,11 @@
 						class=" checked:bg-primary checked:border-primary mr-2 cursor-pointer"
 						type="radio"
 						name="radio"
-						id="radio"
-					/>
+						id="radio" />
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio"
-					>
+						for="radio">
 						Next 30 days
 					</label>
 				</div>
@@ -105,13 +93,11 @@
 						class=" checked:bg-primary checked:border-primary mr-2 cursor-pointer"
 						type="radio"
 						name="radio"
-						id="radio"
-					/>
+						id="radio" />
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio"
-					>
+						for="radio">
 						All Dates
 					</label>
 				</div>
@@ -133,13 +119,11 @@
 						class=" checked:bg-primary checked:border-primary mr-2 rounded-sm cursor-pointer"
 						type="checkbox"
 						name="radio"
-						id="radio"
-					/>
+						id="radio" />
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio"
-					>
+						for="radio">
 						Fundraiser
 					</label>
 				</div>
@@ -149,13 +133,11 @@
 						class=" checked:bg-primary checked:border-primary mr-2 rounded-sm cursor-pointer"
 						type="checkbox"
 						name="radio"
-						id="radio"
-					/>
+						id="radio" />
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio"
-					>
+						for="radio">
 						Physical event
 					</label>
 				</div>
@@ -165,13 +147,11 @@
 						class=" checked:bg-primary checked:border-primary mr-2 rounded-sm cursor-pointer"
 						type="checkbox"
 						name="radio"
-						id="radio"
-					/>
+						id="radio" />
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio"
-					>
+						for="radio">
 						Online event
 					</label>
 				</div>
@@ -189,13 +169,11 @@
 						class=" checked:bg-primary checked:border-primary mr-2 rounded-sm cursor-pointer"
 						type="checkbox"
 						name="radio"
-						id="radio"
-					/>
+						id="radio" />
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio"
-					>
+						for="radio">
 						Kampala
 					</label>
 				</div>
@@ -205,13 +183,11 @@
 						class=" checked:bg-primary checked:border-primary mr-2 rounded-sm cursor-pointer"
 						type="checkbox"
 						name="radio"
-						id="radio"
-					/>
+						id="radio" />
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio"
-					>
+						for="radio">
 						Lira
 					</label>
 				</div>
@@ -221,13 +197,11 @@
 						class=" checked:bg-primary checked:border-primary mr-2 rounded-sm cursor-pointer"
 						type="checkbox"
 						name="radio"
-						id="radio"
-					/>
+						id="radio" />
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio"
-					>
+						for="radio">
 						Gulu
 					</label>
 				</div>
@@ -237,13 +211,11 @@
 						class=" checked:bg-primary checked:border-primary mr-2 rounded-sm cursor-pointer"
 						type="checkbox"
 						name="radio"
-						id="radio"
-					/>
+						id="radio" />
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio"
-					>
+						for="radio">
 						Fort Portal
 					</label>
 				</div>
@@ -253,13 +225,11 @@
 						class=" checked:bg-primary checked:border-primary mr-2 rounded-sm cursor-pointer"
 						type="checkbox"
 						name="radio"
-						id="radio"
-					/>
+						id="radio" />
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio"
-					>
+						for="radio">
 						Arua
 					</label>
 				</div>
@@ -277,13 +247,11 @@
 						class=" checked:bg-primary checked:border-primary mr-2 rounded-sm cursor-pointer"
 						type="checkbox"
 						name="radio"
-						id="radio"
-					/>
+						id="radio" />
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio"
-					>
+						for="radio">
 						Music
 					</label>
 				</div>
@@ -293,13 +261,11 @@
 						class=" checked:bg-primary checked:border-primary mr-2 rounded-sm cursor-pointer"
 						type="checkbox"
 						name="radio"
-						id="radio"
-					/>
+						id="radio" />
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio"
-					>
+						for="radio">
 						Charity & Causes
 					</label>
 				</div>
@@ -309,13 +275,11 @@
 						class=" checked:bg-primary checked:border-primary mr-2 rounded-sm cursor-pointer"
 						type="checkbox"
 						name="radio"
-						id="radio"
-					/>
+						id="radio" />
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio"
-					>
+						for="radio">
 						Health & Awareness
 					</label>
 				</div>
@@ -325,13 +289,11 @@
 						class=" checked:bg-primary checked:border-primary mr-2 rounded-sm cursor-pointer"
 						type="checkbox"
 						name="radio"
-						id="radio"
-					/>
+						id="radio" />
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio"
-					>
+						for="radio">
 						Food & Drinks
 					</label>
 				</div>
@@ -341,13 +303,11 @@
 						class=" checked:bg-primary checked:border-primary mr-2 rounded-sm cursor-pointer"
 						type="checkbox"
 						name="radio"
-						id="radio"
-					/>
+						id="radio" />
 
 					<label
 						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio"
-					>
+						for="radio">
 						Community
 					</label>
 				</div>

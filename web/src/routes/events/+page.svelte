@@ -29,8 +29,7 @@
 		<div class="lg:w-9/12  w-full">
 			<h3 class=" text-2xl px-4 mb-8">{$events.length} results found</h3>
 			<div
-				class=" grid lg:grid-cols-4 md:grid-cols-3 px-4 md:gap-4 md:px-0  mb-10 md:mb-0 grid-cols-1"
-			>
+				class=" grid lg:grid-cols-4 md:grid-cols-3 px-4 md:gap-4 md:px-0  mb-10 md:mb-0 grid-cols-1">
 				{#each $events as event}
 					<div class="	 lg:mb-10 mb-10">
 						<a href={`/events${event.slug}/${event.id}`}>
@@ -38,13 +37,11 @@
 								<img
 									class="rounded-t-md w-full"
 									src={`${event.coverImage}`}
-									alt="event"
-								/>
+									alt="event" />
 
 								<div class="px-5 pb-5">
 									<h3
-										class="text-gray-900 font-semibold text-lg capitalize mt-4 tracking-tight"
-									>
+										class="text-gray-900 font-semibold text-lg capitalize mt-4 tracking-tight">
 										{event.name}
 									</h3>
 									<p class=" text-gray-600 capitalize text-sm mb-3">
@@ -74,9 +71,7 @@
 						><path
 							fill-rule="evenodd"
 							d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
-							clip-rule="evenodd"
-						/></svg
-					>
+							clip-rule="evenodd" /></svg>
 					Prev
 				</div>
 				<div class="flex items-center gap-2">
@@ -89,9 +84,7 @@
 						><path
 							fill-rule="evenodd"
 							d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-							clip-rule="evenodd"
-						/></svg
-					>
+							clip-rule="evenodd" /></svg>
 				</div>
 			</div>
 		</div>

@@ -4,8 +4,7 @@
 			<img
 				class="rounded-t-md w-full "
 				src="https://images.quicket.co.za/0437147_247_247.jpeg"
-				alt="event"
-			/>
+				alt="event" />
 			<div class="px-5 pb-5">
 				<h3 class="text-gray-900 font-semibold text-lg mt-4 tracking-tight">
 					Roots Reggae Jam

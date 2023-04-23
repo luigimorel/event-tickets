@@ -1,6 +1,7 @@
 {
 	"useTabs": true,
 	"singleQuote": true,
+	"bracketSameLine": true,
 	"trailingComma": "none",
 	"plugins": ["prettier-plugin-svelte"],
 	"pluginSearchDirs": ["."],
