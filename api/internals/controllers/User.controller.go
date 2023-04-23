@@ -6,9 +6,9 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/morelmiles/go-events/config"
 	"github.com/morelmiles/go-events/internals/helpers"
 	"github.com/morelmiles/go-events/internals/models"
+	"github.com/morelmiles/go-events/pkg/database"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -20,7 +20,7 @@ func ComparePassword(password string, hashedPassword string) error {
 // Checks if the user exists
 func checkIfUserExists(userId string) bool {
 	var user models.User
-	config.DB.First(&user, userId)
+	database.DB.First(&user, userId)
 
 	return user.ID != 0
 }
@@ -28,7 +28,7 @@ func checkIfUserExists(userId string) bool {
 func GetUsers(w http.ResponseWriter, r *http.Request) {
 
 	var users []models.User
-	config.DB.Find(&users)
+	database.DB.Find(&users)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(&users)
@@ -44,7 +44,7 @@ func GetUserById(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var user models.User
-	config.DB.First(&user, userId)
+	database.DB.First(&user, userId)
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(user)
 }
@@ -63,7 +63,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	user.Prepare()
-	user.BeforeSave(config.DB)
+	user.BeforeSave(database.DB)
 	err = user.Validate("")
 	if err != nil {
 		helpers.ERROR(w, http.StatusUnprocessableEntity, err)
@@ -71,7 +71,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewDecoder(r.Body).Decode(&user)
-	config.DB.Save(&user)
+	database.DB.Save(&user)
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(user)
 
@@ -88,9 +88,9 @@ func UpdateUserById(w http.ResponseWriter, r *http.Request) {
 
 	var user models.User
 
-	config.DB.First(&user, userId)
+	database.DB.First(&user, userId)
 	json.NewDecoder(r.Body).Decode(&user)
-	config.DB.Save(&user)
+	database.DB.Save(&user)
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(user)
 }
@@ -106,7 +106,7 @@ func DeleteUserById(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var user models.User
-	config.DB.Delete(&user, userId)
+	database.DB.Delete(&user, userId)
 	json.NewEncoder(w).Encode(user)
 }
 
@@ -116,7 +116,7 @@ func GetAllEventsByUser(w http.ResponseWriter, r *http.Request) {
 	var user models.User
 	var event models.Event
 
-	config.DB.Model(&user).Find(event).Where("id = ?", userId)
+	database.DB.Model(&user).Find(event).Where("id = ?", userId)
 	json.NewEncoder(w).Encode(user)
 }
 
@@ -157,13 +157,13 @@ func SignIn(email, password string) (string, error) {
 	var err error
 
 	user := models.User{}
-	err = config.DB.Debug().Model(models.User{}).Where("email=?", email).Take(&user).Error
+	err = database.DB.Debug().Model(models.User{}).Where("email=?", email).Take(&user).Error
 
 	if err != nil {
 		return " ", err
 	}
 
-	err = models.VerifyPassword(user.Password, password)
+	err = models.VerifyPassword(password, user.Password)
 	if err != nil && err == bcrypt.ErrMismatchedHashAndPassword {
 		return "", err
 	}

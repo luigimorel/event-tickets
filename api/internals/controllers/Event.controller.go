@@ -7,14 +7,13 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
-
-	"github.com/morelmiles/go-events/config"
 	"github.com/morelmiles/go-events/internals/models"
+	"github.com/morelmiles/go-events/pkg/database"
 )
 
 func checkIfEventExists(eventId string) bool {
 	var event models.Event
-	config.DB.First(&event, eventId)
+	database.DB.First(&event, eventId)
 
 	return event.ID != 0
 }
@@ -36,7 +35,7 @@ func GetEvents(w http.ResponseWriter, r *http.Request) {
 		pageSize = 20
 	}
 
-	config.DB.Limit(pageSize).Offset((page - 1) * pageSize).Find(&events)
+	database.DB.Limit(pageSize).Offset((page - 1) * pageSize).Find(&events)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(&events)
@@ -46,7 +45,7 @@ func GetEvents(w http.ResponseWriter, r *http.Request) {
 func GetHomePageEvents(w http.ResponseWriter, r *http.Request) {
 	var events []models.Event
 
-	config.DB.Limit(4).Find(&events)
+	database.DB.Limit(4).Find(&events)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(&events)
@@ -61,7 +60,7 @@ func GetEventById(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var event models.Event
-	config.DB.First(&event, eventId)
+	database.DB.First(&event, eventId)
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(event)
 }
@@ -74,7 +73,7 @@ func CreateEvent(w http.ResponseWriter, r *http.Request) {
 
 	json.NewDecoder(r.Body).Decode(&event)
 
-	newEvent := config.DB.Create(&event)
+	newEvent := database.DB.Create(&event)
 
 	err = newEvent.Error
 
@@ -96,9 +95,9 @@ func UpdateEventById(w http.ResponseWriter, r *http.Request) {
 
 	var event models.Event
 
-	config.DB.First(&event, eventId)
+	database.DB.First(&event, eventId)
 	json.NewDecoder(r.Body).Decode(&event)
-	config.DB.Save(&event)
+	database.DB.Save(&event)
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(event)
 }
@@ -114,6 +113,6 @@ func DeleteEventById(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var event models.Event
-	config.DB.Delete(&event, eventId)
+	database.DB.Delete(&event, eventId)
 	json.NewEncoder(w).Encode(event)
 }

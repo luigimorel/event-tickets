@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/morelmiles/go-events/config"
 	"github.com/morelmiles/go-events/internals/routes"
+	"github.com/morelmiles/go-events/pkg/database"
 )
 
 func main() {
-	config.Config()
+	database.Config()
 	routes.Routes()
 }
