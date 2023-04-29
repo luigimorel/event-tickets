@@ -142,11 +142,21 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	token, err := SignIn(user.Email, user.Password)
+
 	if err != nil {
 		formattedError := helpers.FormatError(err.Error())
 		helpers.ERROR(w, http.StatusUnprocessableEntity, formattedError)
 		return
 	}
+	http.SetCookie(w, &http.Cookie{
+		Name:  "jwt",
+		Value: token,
+		Path:  "/",
+	})
+
+	// Redirect the user to the home page
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+
 	helpers.JSON(w, http.StatusOK, token)
 
 }

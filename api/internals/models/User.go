@@ -1,12 +1,15 @@
 package models
 
 import (
+	"encoding/json"
 	"errors"
 	"html"
+	"io"
 	"strings"
 	"time"
 
 	"github.com/badoux/checkmail"
+	"github.com/go-playground/validator"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
@@ -14,11 +17,11 @@ import (
 type User struct {
 	gorm.Model
 	ID          uint32 `gorm:"primary_key;auto_increment" json:"id"`
-	Name        string `gorm:"size:255;not null;" json:"name"`
-	PhoneNumber string `gorm:"size:20;type:text;not null;unique" json:"phone"`
+	Name        string `gorm:"size:255;not null;" validate:"required" json:"name"`
+	PhoneNumber string `gorm:"size:20;type:text;not null;unique" validate:"required" json:"phone"`
 	Role        string `gorm:"size:20;default:user" json:"role"`
-	Email       string `gorm:"size:100;not null;unique" json:"email"`
-	Password    string `gorm:"size:100;not null;" json:"password"`
+	Email       string `gorm:"size:100;not null;unique" validate:"required" json:"email"`
+	Password    string `gorm:"size:100;not null;" validate:"required" json:"password"`
 	Verified    bool   `gorm:"default:false;" json:"verified"`
 }
 
@@ -42,6 +45,16 @@ type UserResponse struct {
 	Provider  string    `json:"provider"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
+}
+
+func (u *User) FromJSON(r io.Reader) error {
+	err := json.NewDecoder(r)
+	return err.Decode(u)
+}
+
+func (u *User) ValidateJSON() error {
+	validate := validator.New()
+	return validate.Struct(u)
 }
 
 func Hash(password string) ([]byte, error) {
