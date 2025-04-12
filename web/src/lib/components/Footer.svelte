@@ -1,16 +1,11 @@
 <footer class="lg:text-left bg-primary text-white">
 	<div class=" mx-auto container">
-		<div
-			class="flex justify-center items-center lg:justify-between p-6 border-b border-gray-300">
+		<div class="flex justify-center items-center lg:justify-between p-6 border-b border-gray-300">
 			<div class="mr-12 hidden lg:block">
 				<span>Get connected with us on social networks:</span>
 			</div>
 			<div class="flex justify-center">
-				<a
-					href="https://twitter.com"
-					target="_blank"
-					rel="noreferrer"
-					class="mr-6 text-white">
+				<a href="https://twitter.com" target="_blank" rel="noreferrer" class="mr-6 text-white">
 					<svg
 						aria-hidden="true"
 						focusable="false"
@@ -26,11 +21,7 @@
 					</svg>
 				</a>
 
-				<a
-					href="https://twitter.com"
-					target="_blank"
-					rel="noreferrer"
-					class="mr-6 text-white">
+				<a href="https://twitter.com" target="_blank" rel="noreferrer" class="mr-6 text-white">
 					<svg
 						aria-hidden="true"
 						focusable="false"
@@ -46,11 +37,7 @@
 					</svg>
 				</a>
 
-				<a
-					href="https://twitter.com"
-					target="_blank"
-					rel="noreferrer"
-					class="mr-6 text-white">
+				<a href="https://twitter.com" target="_blank" rel="noreferrer" class="mr-6 text-white">
 					<svg
 						aria-hidden="true"
 						focusable="false"
@@ -66,11 +53,7 @@
 					</svg>
 				</a>
 
-				<a
-					href="https://twitter.com"
-					target="_blank"
-					rel="noreferrer"
-					class="mr-6 text-white">
+				<a href="https://twitter.com" target="_blank" rel="noreferrer" class="mr-6 text-white">
 					<svg
 						aria-hidden="true"
 						focusable="false"
@@ -104,21 +87,16 @@
 			</div>
 		</div>
 
-		<div class="mx-6 py-10  md:text-left">
+		<div class="mx-6 py-10 md:text-left">
 			<div class="grid grid-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 				<div>
-					<a
-						href="/"
-						class="flex items-center text-white font-extrabold text-2xl">
-						Tickets
-					</a>
+					<a href="/" class="flex items-center text-white font-extrabold text-2xl"> Tickets </a>
 
 					<p class=" mb-5">Book the events you like to attend</p>
 				</div>
 
 				<div class="">
-					<h6
-						class="uppercase mt-8 md:mt-0 font-semibold mb-4 flex   md:justify-start">
+					<h6 class="uppercase mt-8 md:mt-0 font-semibold mb-4 flex md:justify-start">
 						Categories
 					</h6>
 					<p class="mb-4">
@@ -133,8 +111,7 @@
 				</div>
 
 				<div class="">
-					<h6
-						class="uppercase mt-8 md:mt-0 font-semibold mb-4 flex md:justify-start">
+					<h6 class="uppercase mt-8 md:mt-0 font-semibold mb-4 flex md:justify-start">
 						Useful links
 					</h6>
 					<p class="mb-4">
@@ -152,12 +129,9 @@
 				</div>
 
 				<div class="">
-					<h6
-						class="uppercase mt-8 md:mt-0 font-semibold mb-4 flex   md:justify-start">
-						Contact
-					</h6>
+					<h6 class="uppercase mt-8 md:mt-0 font-semibold mb-4 flex md:justify-start">Contact</h6>
 
-					<p class="flex items-center  md:justify-start mb-4">
+					<p class="flex items-center md:justify-start mb-4">
 						<svg
 							aria-hidden="true"
 							focusable="false"
@@ -213,8 +187,6 @@
 
 	<div class="text-center p-6 bg-primary">
 		<span>© {new Date().getFullYear()} Copyright</span>
-		<a class="text-white font-semibold" href="https://luigimore.co/"
-			>Tickets
-		</a>
+		<a class="text-white font-semibold" href="https://luigimore.co/">Tickets </a>
 	</div>
 </footer>

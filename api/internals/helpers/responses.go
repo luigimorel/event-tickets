@@ -6,22 +6,30 @@ import (
 	"net/http"
 )
 
-func JSON(w http.ResponseWriter, statusCode int, data interface{}) {
+func ERROR(w http.ResponseWriter, statusCode int, err error) {
 	w.WriteHeader(statusCode)
-	err := json.NewEncoder(w).Encode(data)
 	if err != nil {
-		fmt.Fprintf(w, "%s", err.Error())
+		if err := json.NewEncoder(w).Encode(err); err != nil {
+			fmt.Printf("Error encoding response: %v\n", err)
+		}
 	}
 }
 
-func ERROR(w http.ResponseWriter, statusCode int, err error) {
-	if err != nil {
-		JSON(w, statusCode, struct {
-			Error string `json:"error"`
-		}{
-			Error: err.Error(),
-		})
-		return
+func JSON(w http.ResponseWriter, statusCode int, data interface{}) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(statusCode)
+	if err := json.NewEncoder(w).Encode(data); err != nil {
+		fmt.Printf("Error encoding response: %v\n", err)
 	}
-	JSON(w, http.StatusBadRequest, nil)
+}
+
+func DecodeJSONBody(w http.ResponseWriter, r *http.Request, v interface{}) error {
+	if r.Header.Get("Content-Type") != "application/json" {
+		return fmt.Errorf("content-type header is not application/json")
+	}
+
+	if err := json.NewDecoder(r.Body).Decode(v); err != nil {
+		return err
+	}
+	return nil
 }

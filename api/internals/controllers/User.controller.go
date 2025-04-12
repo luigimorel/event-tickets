@@ -4,164 +4,185 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"strconv"
 
 	"github.com/gorilla/mux"
+	"github.com/morelmiles/go-events/internals/errors"
 	"github.com/morelmiles/go-events/internals/helpers"
 	"github.com/morelmiles/go-events/internals/models"
 	"github.com/morelmiles/go-events/pkg/database"
 	"golang.org/x/crypto/bcrypt"
 )
 
-// Compares the password before saving it
 func ComparePassword(password string, hashedPassword string) error {
 	return bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
 }
 
-// Checks if the user exists
-func checkIfUserExists(userId string) bool {
-	var user models.User
-	database.DB.First(&user, userId)
-
-	return user.ID != 0
-}
-
 func GetUsers(w http.ResponseWriter, r *http.Request) {
-
 	var users []models.User
-	database.DB.Find(&users)
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(&users)
+	if err := database.DB.Find(&users).Error; err != nil {
+		apiErr := errors.NewDatabaseError("Failed to fetch users")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+	helpers.JSON(w, http.StatusOK, &users)
 }
 
-// GetUserById - Fetches a list of all users.
 func GetUserById(w http.ResponseWriter, r *http.Request) {
-	userId := mux.Vars(r)["id"]
-
-	if !checkIfUserExists(userId) {
-		json.NewEncoder(w).Encode("user not found!")
+	params := mux.Vars(r)
+	id, err := strconv.ParseUint(params["id"], 10, 32)
+	if err != nil {
+		apiErr := errors.NewBadRequestError("Invalid user ID format")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
 		return
 	}
 
 	var user models.User
-	database.DB.First(&user, userId)
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(user)
-}
-
-// CreateUser - Creates a new user
-func CreateUser(w http.ResponseWriter, r *http.Request) {
-	body, err := io.ReadAll(r.Body)
-	if err != nil {
-		helpers.ERROR(w, http.StatusUnprocessableEntity, err)
-	}
-	user := models.User{}
-	err = json.Unmarshal(body, &user)
-	if err != nil {
-		helpers.ERROR(w, http.StatusUnprocessableEntity, err)
+	if err := database.DB.First(&user, id).Error; err != nil {
+		apiErr := errors.NewNotFoundError("User not found")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
 		return
 	}
-
-	user.Prepare()
-	user.BeforeSave(database.DB)
-	err = user.Validate("")
-	if err != nil {
-		helpers.ERROR(w, http.StatusUnprocessableEntity, err)
-		return
-	}
-
-	json.NewDecoder(r.Body).Decode(&user)
-	database.DB.Save(&user)
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(user)
-
-}
-
-// UpdateUserById -  Updates a single user by the ID specified
-func UpdateUserById(w http.ResponseWriter, r *http.Request) {
-	userId := mux.Vars(r)["id"]
-	if !checkIfUserExists(userId) {
-		w.WriteHeader(http.StatusNotFound)
-		json.NewEncoder(w).Encode("user not found!")
-		return
-	}
-
-	var user models.User
-
-	database.DB.First(&user, userId)
-	json.NewDecoder(r.Body).Decode(&user)
-	database.DB.Save(&user)
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(user)
-}
-
-// DeleteUserById - Updates a single user by the ID specified.
-func DeleteUserById(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	userId := mux.Vars(r)["id"]
-	if !checkIfUserExists(userId) {
-		w.WriteHeader(http.StatusNotFound)
-		json.NewEncoder(w).Encode("user not found!")
-		return
-	}
-
-	var user models.User
-	database.DB.Delete(&user, userId)
-	json.NewEncoder(w).Encode(user)
+	helpers.JSON(w, http.StatusOK, user)
 }
 
 func GetAllEventsByUser(w http.ResponseWriter, r *http.Request) {
-	userId := mux.Vars(r)["id"]
+	params := mux.Vars(r)
+	id, err := strconv.ParseUint(params["id"], 10, 32)
+	if err != nil {
+		apiErr := errors.NewBadRequestError("Invalid user ID format")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
 
 	var user models.User
-	var event models.Event
+	if err := database.DB.Preload("Events").First(&user, id).Error; err != nil {
+		apiErr := errors.NewNotFoundError("User not found")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+	helpers.JSON(w, http.StatusOK, user.Events)
+}
 
-	database.DB.Model(&user).Find(event).Where("id = ?", userId)
-	json.NewEncoder(w).Encode(user)
+func CreateUser(w http.ResponseWriter, r *http.Request) {
+	var user models.User
+
+	if err := helpers.DecodeJSONBody(w, r, &user); err != nil {
+		apiErr := errors.NewValidationError("Invalid request body")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+
+	if err := user.BeforeSave(database.DB); err != nil {
+		apiErr := errors.NewInternalServerError("Failed to process user data")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+
+	if err := database.DB.Create(&user).Error; err != nil {
+		apiErr := errors.NewDatabaseError("Failed to create user")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+
+	helpers.JSON(w, http.StatusCreated, user)
+}
+
+func UpdateUserById(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	id, err := strconv.ParseUint(params["id"], 10, 32)
+	if err != nil {
+		apiErr := errors.NewBadRequestError("Invalid user ID format")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+
+	var user models.User
+	if err := database.DB.First(&user, id).Error; err != nil {
+		apiErr := errors.NewNotFoundError("User not found")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+
+	if err := helpers.DecodeJSONBody(w, r, &user); err != nil {
+		apiErr := errors.NewValidationError("Invalid request body")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+
+	if err := database.DB.Save(&user).Error; err != nil {
+		apiErr := errors.NewDatabaseError("Failed to update user")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+
+	helpers.JSON(w, http.StatusOK, user)
+}
+
+func DeleteUserById(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	id, err := strconv.ParseUint(params["id"], 10, 32)
+	if err != nil {
+		apiErr := errors.NewBadRequestError("Invalid user ID format")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+
+	var user models.User
+	if err := database.DB.First(&user, id).Error; err != nil {
+		apiErr := errors.NewNotFoundError("User not found")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+
+	if err := database.DB.Delete(&user).Error; err != nil {
+		apiErr := errors.NewDatabaseError("Failed to delete user")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+
+	helpers.JSON(w, http.StatusOK, user)
 }
 
 // Login
 func Login(w http.ResponseWriter, r *http.Request) {
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		helpers.ERROR(w, http.StatusUnprocessableEntity, err)
+		apiErr := errors.NewBadRequestError("Failed to read request body")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
 		return
 	}
+
 	user := models.User{}
-	err = json.Unmarshal(body, &user)
-	if err != nil {
-		helpers.ERROR(w, http.StatusUnprocessableEntity, err)
+	if err = json.Unmarshal(body, &user); err != nil {
+		apiErr := errors.NewValidationError("Invalid request body format")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
 		return
 	}
 
 	user.Prepare()
 
-	err = user.Validate("login")
-	if err != nil {
-		helpers.ERROR(w, http.StatusUnprocessableEntity, err)
+	if err = user.Validate("login"); err != nil {
+		apiErr := errors.NewValidationError(err.Error())
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
 		return
 	}
-	token, err := SignIn(user.Email, user.Password)
 
+	token, err := SignIn(user.Email, user.Password)
 	if err != nil {
-		formattedError := helpers.FormatError(err.Error())
-		helpers.ERROR(w, http.StatusUnprocessableEntity, formattedError)
+		apiErr := errors.NewUnauthorizedError("Invalid credentials")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
 		return
 	}
+
 	http.SetCookie(w, &http.Cookie{
 		Name:  "jwt",
 		Value: token,
 		Path:  "/",
 	})
 
-	// Redirect the user to the home page
-	http.Redirect(w, r, "/", http.StatusSeeOther)
-
 	helpers.JSON(w, http.StatusOK, token)
-
 }
-
-// Sign in
 
 func SignIn(email, password string) (string, error) {
 	var err error

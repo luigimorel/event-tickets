@@ -1,118 +1,124 @@
 package controllers
 
 import (
-	"encoding/json"
-	"log"
 	"net/http"
 	"strconv"
 
 	"github.com/gorilla/mux"
+	"github.com/morelmiles/go-events/internals/errors"
+	"github.com/morelmiles/go-events/internals/helpers"
 	"github.com/morelmiles/go-events/internals/models"
 	"github.com/morelmiles/go-events/pkg/database"
 )
 
-func checkIfEventExists(eventId string) bool {
-	var event models.Event
-	database.DB.First(&event, eventId)
-
-	return event.ID != 0
-}
-
-// GetEvents - Returns a list of all events.
 func GetEvents(w http.ResponseWriter, r *http.Request) {
 	var events []models.Event
-
-	pageStr := mux.Vars(r)["page"]
-	pageLimit := mux.Vars(r)["limit"]
-
-	page, err := strconv.Atoi(pageStr)
-	if err != nil || page < 1 {
-		page = 1
+	if err := database.DB.Find(&events).Error; err != nil {
+		apiErr := errors.NewDatabaseError("Failed to fetch events")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
 	}
-
-	pageSize, err := strconv.Atoi(pageLimit)
-	if err != nil || pageSize < 1 {
-		pageSize = 20
-	}
-
-	database.DB.Limit(pageSize).Offset((page - 1) * pageSize).Find(&events)
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(&events)
+	helpers.JSON(w, http.StatusOK, &events)
 }
 
-// GetHomePageEvents - Returns only 4 results
 func GetHomePageEvents(w http.ResponseWriter, r *http.Request) {
 	var events []models.Event
-
-	database.DB.Limit(4).Find(&events)
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(&events)
+	if err := database.DB.Limit(3).Find(&events).Error; err != nil {
+		apiErr := errors.NewDatabaseError("Failed to fetch homepage events")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+	helpers.JSON(w, http.StatusOK, &events)
 }
 
-// GetEventById - Returns a single event with the value of the ID specified.
 func GetEventById(w http.ResponseWriter, r *http.Request) {
-	eventId := mux.Vars(r)["id"]
-	if !checkIfEventExists(eventId) {
-		json.NewEncoder(w).Encode("event not found!")
-		return
-	}
-
-	var event models.Event
-	database.DB.First(&event, eventId)
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(event)
-}
-
-// CreateEvent - Creates a new event
-func CreateEvent(w http.ResponseWriter, r *http.Request) {
-
-	var event models.Event
-	var err error
-
-	json.NewDecoder(r.Body).Decode(&event)
-
-	newEvent := database.DB.Create(&event)
-
-	err = newEvent.Error
-
+	params := mux.Vars(r)
+	id, err := strconv.ParseUint(params["id"], 10, 32)
 	if err != nil {
-		log.Panic(err)
-	} else {
-		json.NewEncoder(w).Encode(&event)
-	}
-}
-
-// UpdateEventById -  Updates a single event by the ID specified
-func UpdateEventById(w http.ResponseWriter, r *http.Request) {
-	eventId := mux.Vars(r)["id"]
-	if !checkIfEventExists(eventId) {
-		w.WriteHeader(http.StatusNotFound)
-		json.NewEncoder(w).Encode("event not found!")
+		apiErr := errors.NewBadRequestError("Invalid event ID format")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
 		return
 	}
 
 	var event models.Event
-
-	database.DB.First(&event, eventId)
-	json.NewDecoder(r.Body).Decode(&event)
-	database.DB.Save(&event)
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(event)
+	if err := database.DB.First(&event, id).Error; err != nil {
+		apiErr := errors.NewNotFoundError("Event not found")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+	helpers.JSON(w, http.StatusOK, event)
 }
 
-// DeleteEventById - Updates a single event by the ID specified.
+func CreateEvent(w http.ResponseWriter, r *http.Request) {
+	var event models.Event
+
+	if err := helpers.DecodeJSONBody(w, r, &event); err != nil {
+		apiErr := errors.NewValidationError("Invalid request body")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+
+	if err := database.DB.Create(&event).Error; err != nil {
+		apiErr := errors.NewDatabaseError("Failed to create event")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+
+	helpers.JSON(w, http.StatusCreated, &event)
+}
+
 func DeleteEventById(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	eventId := mux.Vars(r)["id"]
-	if !checkIfEventExists(eventId) {
-		w.WriteHeader(http.StatusNotFound)
-		json.NewEncoder(w).Encode("event not found!")
+	params := mux.Vars(r)
+	id, err := strconv.ParseUint(params["id"], 10, 32)
+	if err != nil {
+		apiErr := errors.NewBadRequestError("Invalid event ID format")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
 		return
 	}
 
 	var event models.Event
-	database.DB.Delete(&event, eventId)
-	json.NewEncoder(w).Encode(event)
+	if err := database.DB.First(&event, id).Error; err != nil {
+		apiErr := errors.NewNotFoundError("Event not found")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+
+	if err := database.DB.Delete(&event).Error; err != nil {
+		apiErr := errors.NewDatabaseError("Failed to delete event")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+
+	helpers.JSON(w, http.StatusOK, event)
+}
+
+func UpdateEventById(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	id, err := strconv.ParseUint(params["id"], 10, 32)
+	if err != nil {
+		apiErr := errors.NewBadRequestError("Invalid event ID format")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+
+	var event models.Event
+	if err := database.DB.First(&event, id).Error; err != nil {
+		apiErr := errors.NewNotFoundError("Event not found")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+
+	if err := helpers.DecodeJSONBody(w, r, &event); err != nil {
+		apiErr := errors.NewValidationError("Invalid request body")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+
+	if err := database.DB.Save(&event).Error; err != nil {
+		apiErr := errors.NewDatabaseError("Failed to update event")
+		helpers.ERROR(w, apiErr.StatusCode, apiErr)
+		return
+	}
+
+	helpers.JSON(w, http.StatusOK, event)
 }

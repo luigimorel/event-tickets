@@ -6,16 +6,12 @@
 	<div
 		class="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
 		<div class=" text-center sm:text-left">
-			<h1
-				class="text-3xl text-white md:text-gray-900 font-extrabold sm:text-5xl">
+			<h1 class="text-3xl text-white md:text-gray-900 font-extrabold sm:text-5xl">
 				Let us help you find an
-				<strong class="block font-extrabold text-primary "
-					>Event Of Your Liking.
-				</strong>
+				<strong class="block font-extrabold text-primary">Event Of Your Liking. </strong>
 			</h1>
 
-			<p
-				class="mt-4 md:text-gray-900 text-white max-w-lg font-bold sm:text-xl sm:leading-relaxed">
+			<p class="mt-4 md:text-gray-900 text-white max-w-lg font-bold sm:text-xl sm:leading-relaxed">
 				Tune into online events, webinars, lessons and more.
 				<br />
 				From wherever you are.
@@ -24,7 +20,7 @@
 			<div class="mt-8 flex flex-wrap gap-4 text-center">
 				<a
 					href="/events"
-					class="block w-full rounded  bg-primary px-12 py-5 text-base font-medium text-white hover:font-bold shadow hover:bg-secondary focus:outline-none focus:ring active:bg-secondary sm:w-auto">
+					class="block w-full rounded bg-primary px-12 py-5 text-base font-medium text-white hover:font-bold shadow hover:bg-secondary focus:outline-none focus:ring active:bg-secondary sm:w-auto">
 					Browse Events
 				</a>
 

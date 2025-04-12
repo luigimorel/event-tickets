@@ -3,6 +3,12 @@
 	"singleQuote": true,
 	"bracketSameLine": true,
 	"trailingComma": "none",
+	"semi": true,
+	"printWidth": 100,
+	"tabWidth": 2,
+	"arrowParens": "avoid",
+	"bracketSpacing": true,
+	"endOfLine": "lf",
 	"plugins": ["prettier-plugin-svelte"],
 	"pluginSearchDirs": ["."],
 	"overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]

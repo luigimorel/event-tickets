@@ -1,25 +1,21 @@
 <script lang="ts">
 	import Header from '../../lib/components/Header.svelte';
+	import Input from '../../lib/components/Input.svelte';
 	import '../../styles.css';
 </script>
 
 <Header />
-<section class="min-h-screen flex items-stretch text-white ">
+<section class="min-h-screen flex items-stretch text-white">
 	<div
 		class="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
 		style="background-image: url(https://images.unsplash.com/photo-1603228254119-e6a4d095dc59?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80);">
 		<div class="absolute bg-black opacity-60 inset-0 z-0" />
 		<div class="w-full px-24 z-10">
-			<h1 class="text-5xl font-bold text-left tracking-wide">
-				Keep it special
-			</h1>
-			<p class="text-3xl my-4">
-				Capture your personal memory in unique way, anywhere.
-			</p>
+			<h1 class="text-5xl font-bold text-left tracking-wide">Keep it special</h1>
+			<p class="text-3xl my-4">Capture your personal memory in unique way, anywhere.</p>
 		</div>
 
-		<div
-			class="bottom-0 absolute p-4 text-center right-0 left-0 flex justify-center space-x-4">
+		<div class="bottom-0 absolute p-4 text-center right-0 left-0 flex justify-center space-x-4">
 			<span>
 				<svg
 					fill="#fff"
@@ -58,109 +54,56 @@
 		</div>
 	</div>
 
-	<div
-		class="lg:w-1/2 w-full flex bg-[ #161616] items-center lg:px-16 px-0 z-0">
+	<div class="lg:w-1/2 w-full flex bg-[ #161616] items-center lg:px-16 px-0 z-0">
 		<div
 			class="absolute lg:hidden z-10 inset-0 bg-gray-500 bg-no-repeat bg-cover items-center"
 			style="background-image: url(https://images.unsplash.com/photo-1603228254119-e6a4d095dc59?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80);">
 			<div class="absolute bg-black opacity-60 inset-0 z-0" />
 		</div>
 
-		<div class=" lg:w-8/12 w-full mt-20  py-6 z-20">
+		<div class=" lg:w-8/12 w-full mt-20 py-6 z-20">
 			<form action="" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
-				<div class=" flex flex-col mb-5">
-					<label
-						class=" mb-2 font-bold  lg:text-gray-800 text-white"
-						for="name">
-						Name
-					</label>
+				<Input label="Name" type="text" name="name" id="name" placeholder="Name" />
 
-					<input
-						type="text"
-						name="name"
-						id="name"
-						placeholder="Name"
-						class="block w-full py-3 px-2 text-base rounded bg-white text-gray-800 border border-gray-800" />
-				</div>
+				<Input label="Email" type="email" name="email" id="email" placeholder="Email" />
 
-				<div class=" flex flex-col mb-5">
-					<label
-						class=" mb-2 font-bold  lg:text-gray-800 text-white"
-						for="email">
-						Email
-					</label>
+				<Input
+					label="Phone Number"
+					type="tel"
+					name="phone"
+					id="phone"
+					placeholder="Phone Number"
+					pattern="[0-9]{4}[0-9]{3}[0-9]{4}" />
 
-					<input
-						type="email"
-						name="email"
-						id="email"
-						placeholder="Email"
-						class="block w-full py-3 px-2 text-base rounded bg-white text-gray-800 border border-gray-800" />
-				</div>
+				<Input
+					label="Password"
+					type="password"
+					name="password"
+					id="password"
+					placeholder="Password" />
 
-				<div class=" flex flex-col mb-5">
-					<label
-						class=" mb-2 font-bold  lg:text-gray-800 text-white"
-						for="phone">
-						Phone Number
-					</label>
+				<Input
+					label="Confirm Password"
+					type="password"
+					name="confirmPassword"
+					id="confirmPassword"
+					placeholder="Confirm Password" />
 
-					<input
-						type="tel"
-						name="phone"
-						id="phone"
-						pattern="[0-9]{4}[0-9]{3}[0-9]{4}"
-						placeholder="Phone Number"
-						class="block w-full py-3 px-2 text-base rounded bg-white text-gray-800 border border-gray-800" />
-				</div>
-
-				<div class=" flex flex-col mb-5">
-					<label
-						class="mb-2 font-bold lg:text-gray-800 text-white"
-						for="password">
-						Password
-					</label>
-
-					<input
-						class="block w-full py-3 px-2 text-base rounded bg-white  text-gray-800 border border-gray-800"
-						type="password"
-						name="password"
-						id="password"
-						placeholder="Password" />
-				</div>
-
-				<div class=" flex flex-col mb-5">
-					<label
-						class="mb-2 font-bold lg:text-gray-800 text-white"
-						for="password">
-						Confirm Password
-					</label>
-
-					<input
-						class="block w-full py-3 px-2 text-base rounded bg-white  text-gray-800 border border-gray-800"
-						type="password"
-						name="password"
-						id="password"
-						placeholder="Confirm Password" />
-				</div>
-
-				<div
-					class=" lg:text-gray-800 text-white cursor-pointer mb-8 hover:text-gray-600">
+				<div class="lg:text-gray-800 text-white cursor-pointer mb-8 hover:text-gray-600">
 					<p>
 						Already have an account?
 						<a href="/login" class=" text-primary font-bold"> Login </a>
 					</p>
 				</div>
 
-				<div class=" flex justify-center items-center">
+				<div class="flex justify-center items-center">
 					<button
-						class="uppercase block py-3 px-2 text-base  w-52 rounded-full bg-primary text-white first-letter:focus:outline-none">
+						class="uppercase block py-3 px-2 text-base w-52 rounded-full bg-primary text-white first-letter:focus:outline-none">
 						create account
 					</button>
 				</div>
 
-				<div
-					class="p-4 text-center right-0 left-0 flex justify-center space-x-4 mt-16 lg:hidden">
+				<div class="p-4 text-center right-0 left-0 flex justify-center space-x-4 mt-16 lg:hidden">
 					<a href="https://twitter.com" target="_blank" rel="noreferrer">
 						<svg
 							fill="#fff"

@@ -2,9 +2,13 @@
 
 Visit the live app: [https://event-ticketss.netlify.app/events](https://event-ticketss.netlify.app/events)
 
-![A screenshot](./img.png)
-![A screenshot](./img2.png)
-![A screenshot](./img3.png)
+<table>
+  <tr>
+    <td><img src="./screenshots/img.png" alt="Screenshot 1"></td>
+    <td><img src="./screenshots/img2.png" alt="Screenshot 2"></td>
+    <td><img src="./screenshots/img3.png" alt="Screenshot 3"></td>
+  </tr>
+</table>
 
 ### Tools
 

@@ -16,13 +16,14 @@ import (
 
 type User struct {
 	gorm.Model
-	ID          uint32 `gorm:"primary_key;auto_increment" json:"id"`
-	Name        string `gorm:"size:255;not null;" validate:"required" json:"name"`
-	PhoneNumber string `gorm:"size:20;type:text;not null;unique" validate:"required" json:"phone"`
-	Role        string `gorm:"size:20;default:user" json:"role"`
-	Email       string `gorm:"size:100;not null;unique" validate:"required" json:"email"`
-	Password    string `gorm:"size:100;not null;" validate:"required" json:"password"`
-	Verified    bool   `gorm:"default:false;" json:"verified"`
+	ID          uint32  `gorm:"primary_key;auto_increment" json:"id"`
+	Name        string  `gorm:"size:255;not null;" validate:"required" json:"name"`
+	PhoneNumber string  `gorm:"size:20;type:text;not null;unique" validate:"required" json:"phone"`
+	Role        string  `gorm:"size:20;default:user" json:"role"`
+	Email       string  `gorm:"size:100;not null;unique" validate:"required" json:"email"`
+	Password    string  `gorm:"size:100;not null;" validate:"required" json:"password"`
+	Verified    bool    `gorm:"default:false;" json:"verified"`
+	Events      []Event `gorm:"foreignKey:UserID" json:"events"`
 }
 
 type SignUpInput struct {
@@ -79,7 +80,6 @@ func (user *User) Prepare() {
 	user.Name = html.EscapeString(strings.TrimSpace(user.Name))
 	user.Email = html.EscapeString(strings.TrimSpace(user.Email))
 	user.PhoneNumber = html.EscapeString(strings.TrimSpace(user.PhoneNumber))
-
 }
 
 func (user *User) Validate(action string) error {
@@ -100,7 +100,6 @@ func (user *User) Validate(action string) error {
 		if err := checkmail.ValidateFormat(user.Email); err != nil {
 			return errors.New("email is invalid")
 		}
-
 		return nil
 
 	case "login":
@@ -131,7 +130,6 @@ func (user *User) Validate(action string) error {
 		if err := checkmail.ValidateFormat(user.Email); err != nil {
 			return errors.New("email is invalid")
 		}
-
 		return nil
 	}
 }

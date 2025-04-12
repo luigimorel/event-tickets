@@ -11,22 +11,26 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write ."
+		"format": "prettier --plugin-search-dir . --write .",
+		"prepare": "husky install"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/adapter-netlify": "^1.0.0-next.86",
 		"@sveltejs/kit": "next",
-		"@typescript-eslint/eslint-plugin": "^5.45.0",
-		"@typescript-eslint/parser": "^5.45.0",
+		"@typescript-eslint/eslint-plugin": "^5.62.0",
+		"@typescript-eslint/parser": "^5.62.0",
 		"autoprefixer": "^10.4.13",
-		"eslint": "^8.28.0",
-		"eslint-config-prettier": "^8.5.0",
+		"eslint": "^8.57.1",
+		"eslint-config-prettier": "^8.10.0",
+		"eslint-plugin-svelte": "^3.5.1",
 		"eslint-plugin-svelte3": "^4.0.0",
+		"husky": "^8.0.0",
+		"lint-staged": "^15.5.1",
 		"postcss": "^8.4.20",
-		"prettier": "^2.8.0",
-		"prettier-plugin-svelte": "^2.8.1",
+		"prettier": "^2.8.8",
+		"prettier-plugin-svelte": "^2.10.1",
 		"svelte": "^3.54.0",
 		"svelte-check": "^2.9.2",
 		"svelte-paginate": "^0.1.0",
@@ -41,5 +45,14 @@
 	"dependencies": {
 		"@tailwindcss/forms": "^0.5.3",
 		"svelte-time": "^0.7.1"
+	},
+	"lint-staged": {
+		"*.{js,ts,svelte}": [
+			"eslint --fix",
+			"prettier --write"
+		],
+		"*.{json,css,md}": [
+			"prettier --write"
+		]
 	}
 }

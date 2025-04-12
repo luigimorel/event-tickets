@@ -16,14 +16,14 @@ if (flag === true) {
 	apiLink = productionApiLink;
 }
 
-export const events = derived(apiData, ($apiData) => {
+export const events = derived(apiData, $apiData => {
 	if ($apiData) {
 		return $apiData;
 	}
 	return [];
 });
 
-export const singleEvent = derived(apiData, ($apiData) => {
+export const singleEvent = derived(apiData, $apiData => {
 	if ($apiData) {
 		return $apiData;
 	}
