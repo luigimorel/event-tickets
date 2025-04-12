@@ -1,47 +1,45 @@
 package routes
 
 import (
-	"net/http"
-
 	"github.com/gorilla/mux"
 	"github.com/morelmiles/go-events/internals/controllers"
-	"github.com/morelmiles/go-events/internals/helpers"
-	"github.com/rs/cors"
+	"github.com/morelmiles/go-events/internals/middleware"
+	"github.com/morelmiles/go-events/internals/server"
 	httpSwagger "github.com/swaggo/http-swagger"
 )
 
-func Routes() {
-
-	helpers.InitLogger()
+func SetupRoutes() error {
+	middleware.InitLogger()
 
 	router := mux.NewRouter().StrictSlash(true)
-	corsHandler := cors.Default().Handler(router)
+	router.Use(middleware.LoggerMiddleware)
 
-	// Swggers
-	router.PathPrefix("/api/v1/swagger/").Handler(httpSwagger.WrapHandler)
+	api := router.PathPrefix("/api/v1").Subrouter()
 
-	// Home
-	router.HandleFunc("/", helpers.SetMiddlewareJSON(controllers.Home)).Methods("GET")
+	api.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
 
-	// Auth
-	router.HandleFunc("/api/v1/login", helpers.SetMiddlewareJSON(controllers.Login)).Methods("POST")
+	router.HandleFunc("/", middleware.SetMiddlewareJSON(controllers.Home)).Methods("GET")
 
-	// Users
-	router.HandleFunc("/api/v1/users", helpers.SetMiddlewareAuthentication(controllers.GetUsers)).Methods("GET")
-	router.HandleFunc("/api/v1/user/{id}", helpers.SetMiddlewareJSON(controllers.GetUserById)).Methods("GET")
-	router.HandleFunc("/api/v1/register", helpers.SetMiddlewareJSON(controllers.CreateUser)).Methods("POST")
-	router.HandleFunc("/api/v1/user/{id}", helpers.SetMiddlewareAuthentication(controllers.DeleteUserById)).Methods("DELETE")
-	router.HandleFunc("/api/v1/user/{id}", helpers.SetMiddlewareAuthentication(controllers.UpdateUserById)).Methods("PATCH")
-	router.HandleFunc("/api/v1/user/events/{id}", helpers.SetMiddlewareJSON(controllers.GetAllEventsByUser)).Methods("GET")
+	auth := api.PathPrefix("").Subrouter()
+	auth.HandleFunc("/login", middleware.SetMiddlewareJSON(controllers.Login)).Methods("POST")
+	auth.HandleFunc("/register", middleware.SetMiddlewareJSON(controllers.CreateUser)).Methods("POST")
 
-	// Events
-	router.HandleFunc("/api/v1/events", helpers.SetMiddlewareJSON(controllers.GetEvents)).Methods("GET")
-	router.HandleFunc("/api/v1/homepage_events", helpers.SetMiddlewareJSON(controllers.GetHomePageEvents)).Methods("GET")
-	router.HandleFunc("/api/v1/events/{id}", helpers.SetMiddlewareJSON(controllers.GetEventById)).Methods("GET")
-	router.HandleFunc("/api/v1/create", helpers.SetMiddlewareAuthentication(controllers.CreateEvent)).Methods("POST")
-	router.HandleFunc("/api/v1/events/{id}", helpers.SetMiddlewareAuthentication(controllers.DeleteEventById)).Methods("DELETE")
-	router.HandleFunc("/api/v1/events/{id}", helpers.SetMiddlewareAuthentication(controllers.UpdateEventById)).Methods("PUT")
+	users := api.PathPrefix("/user").Subrouter()
+	users.HandleFunc("s", middleware.SetMiddlewareAuthentication(controllers.GetUsers)).Methods("GET")
+	users.HandleFunc("/{id}", middleware.SetMiddlewareJSON(controllers.GetUserById)).Methods("GET")
+	users.HandleFunc("/{id}", middleware.SetMiddlewareAuthentication(controllers.DeleteUserById)).Methods("DELETE")
+	users.HandleFunc("/{id}", middleware.SetMiddlewareAuthentication(controllers.UpdateUserById)).Methods("PATCH")
+	users.HandleFunc("/events/{id}", middleware.SetMiddlewareJSON(controllers.GetAllEventsByUser)).Methods("GET")
 
-	// Server port
-	http.ListenAndServe(":8080", corsHandler)
+	events := api.PathPrefix("/events").Subrouter()
+	events.HandleFunc("", middleware.SetMiddlewareJSON(controllers.GetEvents)).Methods("GET")
+	events.HandleFunc("/homepage", middleware.SetMiddlewareJSON(controllers.GetHomePageEvents)).Methods("GET")
+	events.HandleFunc("/{id}", middleware.SetMiddlewareJSON(controllers.GetEventById)).Methods("GET")
+	events.HandleFunc("", middleware.SetMiddlewareAuthentication(controllers.CreateEvent)).Methods("POST")
+	events.HandleFunc("/{id}", middleware.SetMiddlewareAuthentication(controllers.DeleteEventById)).Methods("DELETE")
+	events.HandleFunc("/{id}", middleware.SetMiddlewareAuthentication(controllers.UpdateEventById)).Methods("PUT")
+
+	corsHandler := middleware.SetupCORS()(router)
+	srv := server.NewServer(corsHandler, nil)
+	return srv.Start()
 }

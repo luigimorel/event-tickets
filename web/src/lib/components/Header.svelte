@@ -10,15 +10,9 @@
 </script>
 
 <header>
-	<nav
-		class="bg-white px-2 sm:px-4 py-2.5  fixed w-full z-20 top-0 left-0 border-b border-gray-200">
-		<div
-			class="container mt-2 flex flex-wrap justify-between items-center mx-auto">
-			<a
-				href="/"
-				class="flex items-center text-primary font-extrabold text-2xl">
-				Tickets
-			</a>
+	<nav class="bg-white px-2 sm:px-4 py-2.5 fixed w-full z-20 top-0 left-0 border-b border-gray-200">
+		<div class="container mt-2 flex flex-wrap justify-between items-center mx-auto">
+			<a href="/" class="flex items-center text-primary font-extrabold text-2xl"> Tickets </a>
 			<div class="flex md:order-2 justify-center items-center">
 				<a href="/create-account">
 					<button
@@ -39,7 +33,7 @@
 					on:click|preventDefault={() => toggleMenu(true)}
 					data-collapse-toggle="navbar-sticky"
 					type="button"
-					class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
+					class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
 					aria-controls="navbar-sticky"
 					aria-expanded="false">
 					<span class="sr-only">Open main menu</span>
@@ -61,7 +55,7 @@
 				id="navbar-sticky">
 				<ul
 					class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8
-					md:mt- text-base md:font-medium md:border-0 md:bg-white ">
+					md:mt- text-base md:font-medium md:border-0 md:bg-white">
 					<li>
 						<a
 							href="/events"

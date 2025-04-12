@@ -1,7 +1,7 @@
 <div class="lg:w-3/12 w-full lg:pr-20">
 	<div class=" flex justify-start items-center relative mb-6 lg:mb-12">
 		<input
-			class="leading-none text-left text-gray-600 text-base placeholder:font-bold placeholder:text-gray-500 px-4 py-5 w-full border rounded border-primary  outline-none"
+			class="leading-none text-left text-gray-600 text-base placeholder:font-bold placeholder:text-gray-500 px-4 py-5 w-full border rounded border-primary outline-none"
 			type="text"
 			placeholder="Search for events" />
 		<svg
@@ -39,9 +39,7 @@
 						name="radio"
 						id="radio" />
 
-					<label
-						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+					<label class="form-check-label mt-1 inline-block text-gray-800" for="radio">
 						Today
 					</label>
 				</div>
@@ -53,9 +51,7 @@
 						name="radio"
 						id="radio" />
 
-					<label
-						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+					<label class="form-check-label mt-1 inline-block text-gray-800" for="radio">
 						This Week
 					</label>
 				</div>
@@ -67,9 +63,7 @@
 						name="radio"
 						id="radio" />
 
-					<label
-						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+					<label class="form-check-label mt-1 inline-block text-gray-800" for="radio">
 						Next 7 days
 					</label>
 				</div>
@@ -81,9 +75,7 @@
 						name="radio"
 						id="radio" />
 
-					<label
-						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+					<label class="form-check-label mt-1 inline-block text-gray-800" for="radio">
 						Next 30 days
 					</label>
 				</div>
@@ -95,9 +87,7 @@
 						name="radio"
 						id="radio" />
 
-					<label
-						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+					<label class="form-check-label mt-1 inline-block text-gray-800" for="radio">
 						All Dates
 					</label>
 				</div>
@@ -121,9 +111,7 @@
 						name="radio"
 						id="radio" />
 
-					<label
-						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+					<label class="form-check-label mt-1 inline-block text-gray-800" for="radio">
 						Fundraiser
 					</label>
 				</div>
@@ -135,9 +123,7 @@
 						name="radio"
 						id="radio" />
 
-					<label
-						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+					<label class="form-check-label mt-1 inline-block text-gray-800" for="radio">
 						Physical event
 					</label>
 				</div>
@@ -149,9 +135,7 @@
 						name="radio"
 						id="radio" />
 
-					<label
-						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+					<label class="form-check-label mt-1 inline-block text-gray-800" for="radio">
 						Online event
 					</label>
 				</div>
@@ -171,9 +155,7 @@
 						name="radio"
 						id="radio" />
 
-					<label
-						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+					<label class="form-check-label mt-1 inline-block text-gray-800" for="radio">
 						Kampala
 					</label>
 				</div>
@@ -185,11 +167,7 @@
 						name="radio"
 						id="radio" />
 
-					<label
-						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
-						Lira
-					</label>
+					<label class="form-check-label mt-1 inline-block text-gray-800" for="radio"> Lira </label>
 				</div>
 
 				<div class="flex flex-row items-center mb-1">
@@ -199,11 +177,7 @@
 						name="radio"
 						id="radio" />
 
-					<label
-						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
-						Gulu
-					</label>
+					<label class="form-check-label mt-1 inline-block text-gray-800" for="radio"> Gulu </label>
 				</div>
 
 				<div class="flex flex-row items-center mb-1">
@@ -213,9 +187,7 @@
 						name="radio"
 						id="radio" />
 
-					<label
-						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+					<label class="form-check-label mt-1 inline-block text-gray-800" for="radio">
 						Fort Portal
 					</label>
 				</div>
@@ -227,11 +199,7 @@
 						name="radio"
 						id="radio" />
 
-					<label
-						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
-						Arua
-					</label>
+					<label class="form-check-label mt-1 inline-block text-gray-800" for="radio"> Arua </label>
 				</div>
 			</div>
 		</div>
@@ -249,9 +217,7 @@
 						name="radio"
 						id="radio" />
 
-					<label
-						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+					<label class="form-check-label mt-1 inline-block text-gray-800" for="radio">
 						Music
 					</label>
 				</div>
@@ -263,9 +229,7 @@
 						name="radio"
 						id="radio" />
 
-					<label
-						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+					<label class="form-check-label mt-1 inline-block text-gray-800" for="radio">
 						Charity & Causes
 					</label>
 				</div>
@@ -277,9 +241,7 @@
 						name="radio"
 						id="radio" />
 
-					<label
-						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+					<label class="form-check-label mt-1 inline-block text-gray-800" for="radio">
 						Health & Awareness
 					</label>
 				</div>
@@ -291,9 +253,7 @@
 						name="radio"
 						id="radio" />
 
-					<label
-						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+					<label class="form-check-label mt-1 inline-block text-gray-800" for="radio">
 						Food & Drinks
 					</label>
 				</div>
@@ -305,9 +265,7 @@
 						name="radio"
 						id="radio" />
 
-					<label
-						class="form-check-label mt-1 inline-block text-gray-800"
-						for="radio">
+					<label class="form-check-label mt-1 inline-block text-gray-800" for="radio">
 						Community
 					</label>
 				</div>

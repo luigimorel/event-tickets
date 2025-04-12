@@ -1,0 +1,33 @@
+run:
+  go: "1.19"
+  timeout: 5m
+  modules-download-mode: readonly
+  allow-parallel-runners: true
+  working-directory: .
+
+linters:
+  enable:
+    - gofmt
+    - goimports
+    - govet
+    - staticcheck
+    - errcheck
+
+linters-settings:
+  govet:
+    shadow: true
+  gofmt:
+    simplify: true
+  revive:
+    rules:
+      - name: package-comments
+        disabled: true
+
+issues:
+  exclude-use-default: false
+  max-issues-per-linter: 0
+  max-same-issues: 0
+
+output:
+  print-issued-lines: true
+  print-linter-name: true

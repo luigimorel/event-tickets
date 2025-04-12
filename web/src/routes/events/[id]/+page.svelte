@@ -11,12 +11,12 @@
 
 	onMount(async () => {
 		fetch(`${apiLink}/events/${id}`)
-			.then((response) => response.json())
-			.then((data) => {
+			.then(response => response.json())
+			.then(data => {
 				apiData.set(data);
 			})
 
-			.catch((error) => {
+			.catch(error => {
 				console.log(error);
 				return [];
 			});
